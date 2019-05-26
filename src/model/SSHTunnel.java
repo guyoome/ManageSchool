@@ -1,6 +1,6 @@
 package model;
 
-import com.jcraft.jsch.*;
+//import com.jcraft.jsch.*;
 
 /**
  * Etablit une connexion au serveur de la base de données via un tunnel SSH
@@ -64,7 +64,7 @@ public class SSHTunnel {
     @SuppressWarnings("CallToThreadDumpStack")
     public boolean connect() {
 
-        try {
+       /* try {
             // Initialise la connexion
             JSch jsch = new JSch();
             Session session = jsch.getSession(this.getUsername(), this.getFirstHost(), this.getFirstHostPort());
@@ -80,7 +80,7 @@ public class SSHTunnel {
             return true;
         } catch (JSchException e) {
             System.out.println("Problème SSH");
-        }
+        }*/
 
         return false;
     }
@@ -132,7 +132,7 @@ public class SSHTunnel {
      * automatise la connexion en fournissant les informations de connexion sans
      * les demander à l'utilisateur
      */
-    static class SilentUserInfo implements UserInfo, UIKeyboardInteractive {
+    /*static class SilentUserInfo implements UserInfo, UIKeyboardInteractive {
 
         private final String password;
 
@@ -177,5 +177,5 @@ public class SSHTunnel {
                 boolean[] echo) {
             return null;
         }
-    }
+    }*/
 }
