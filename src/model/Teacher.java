@@ -1,6 +1,6 @@
 package model;
 
-public class Teacher extends People{
+public class Teacher extends personne{
     public Teacher() {
         super();
     }

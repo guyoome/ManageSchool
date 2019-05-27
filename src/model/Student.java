@@ -1,12 +1,12 @@
 package model;
 
-public class Student extends People {
+public class Student extends personne {
     public Student() {
         super();
     }
 
-    public Student(String name, String firstname) {
-        super(name, firstname);
+    public Student(String nom, String prenom) {
+        super(nom, prenom);
     }
 
     public Student(String name, String firstname, int id) {
