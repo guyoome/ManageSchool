@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 public class Connexion {
 
+    
     /**
      * Attributs prives : connexion JDBC, statement, ordre requete et resultat
      * requete
@@ -95,6 +96,11 @@ public class Connexion {
         }
     }
 
+    
+    public Connection getConnect()
+    {
+        return conn;
+    }
     /**
      * Méthode qui ajoute la table en parametre dans son ArrayList
      *

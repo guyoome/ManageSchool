@@ -19,8 +19,8 @@ import java.sql.SQLException;
 public abstract class DAO<T> {
   protected Connexion connect = null;
    
-  public DAO() throws SQLException, ClassNotFoundException{
-    this.connect = new Connexion("projetjava","root","");
+  public DAO(Connexion conn){
+    this.connect = conn;
   }
    
   /**
