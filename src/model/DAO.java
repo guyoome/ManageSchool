@@ -5,6 +5,8 @@
  */
 package model;
 import java.sql.SQLException;
+import com.sdz.connection.SdzConnection;
+
 
 /**
  *

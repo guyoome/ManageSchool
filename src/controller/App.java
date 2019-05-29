@@ -3,6 +3,9 @@ package controller;
 import model.People;
 
 import java.util.Scanner;
+import model.DAO;
+import model.bulletin;
+import model.bulletinDAO;
 
 public class App {
     private People session = null;//variable de session
@@ -29,6 +32,13 @@ public class App {
         System.out.print("mdp : ");
         mdp = sc.nextLine();
         connection(user, mdp);
+        
+        //Testons des élèves
+        DAO<bulletin> bulletinDao = new bulletinDAO.(SdzConnection.getInstance());
+    for(int i = 1; i < 5; i++){
+      Eleve eleve = eleveDao.find(i);
+      System.out.println("Elève N°" + eleve.getId() + "  - " + eleve.getNom() + " " + eleve.getPrenom());
+    }
 
 
     }
