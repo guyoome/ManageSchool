@@ -30,6 +30,7 @@ public class bulletinDAO extends DAO<bulletin>{
     findOne = this.connect.prepareStatement("SELECT ");
     findAll = this.connect.prepareStatement("SELECT * FROM bulletin");
     create = this.connect.prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)");
+    
     }
 
     @Override
@@ -53,7 +54,15 @@ public class bulletinDAO extends DAO<bulletin>{
 
     @Override
   public boolean delete(bulletin obj) {
-    return false;
+        try {
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM bulletin WHERE id = " + obj.getID());         
+            delete.executeUpdate();
+            System.out.println("bulletin supprimé !");
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    return true;
   }
    
     @Override
@@ -69,7 +78,7 @@ public class bulletinDAO extends DAO<bulletin>{
       
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin WHERE id = " + id);
       
       /*
       ResultSet result = null;ResultSet result = this.connect.createStatement(
@@ -78,7 +87,8 @@ public class bulletinDAO extends DAO<bulletin>{
       result = findAll.executeQuery();      
       String requete = "SELECT * FROM eleve WHERE id = " + id;
       this.connect.ajouterRequete(requete);
-*/
+       */
+      
       if(result.first())
         b = new bulletin(
           id,

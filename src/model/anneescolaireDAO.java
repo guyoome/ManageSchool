@@ -25,8 +25,8 @@ public class anneescolaireDAO extends DAO<anneescolaire>{
     super(conn);
     
     //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM anneescolaire");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO anneescolaire () VALUES ()");
+    findAll = this.connect.prepareStatement("SELECT * FROM anneescolaire");
+    create = this.connect.prepareStatement("INSERT INTO anneescolaire () VALUES ()");
     }
 
     @SuppressWarnings("empty-statement")
@@ -46,23 +46,20 @@ public class anneescolaireDAO extends DAO<anneescolaire>{
   }
    
     @Override
-  public bulletin find(int id) {
-    bulletin b = new bulletin();      
+  public anneescolaire find(int id) {
+    anneescolaire b = new anneescolaire();      
       
     try {
       
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM anneescolaire WHERE id = " + id);
       
       //String requete = "SELECT * FROM eleve WHERE id = " + id;
       //this.connect.ajouterRequete(requete);
       if(result.first())
-        b = new bulletin(
-          id,
-          result.getString("appreciation"),
-          result.getInt("id_trimestre"),
-          result.getInt("id_inscription")
+        b = new anneescolaire(
+          id
         );         
     } catch (SQLException e) {
       e.printStackTrace();

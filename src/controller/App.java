@@ -30,6 +30,17 @@ public class App {
         DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
         bulletin newBu = new bulletin(0,"TB",0,0);
         bulletinDAO.create(newBu);
+        
+        bulletin bubu = bulletinDAO.find(1);
+        System.out.println("ID : " + bubu.getID());
+        System.out.println("Appreciation : " + bubu.getAppreciation());
+        System.out.println("ID inscription : " + bubu.getIDinscription());
+        System.out.println("ID trimestre " + bubu.getIDtrimestre());
+        
+        
+        bulletinDAO.delete(bubu);
+        
+
                 
         System.out.println("SCHOOL MANAGEMENT");
         String user, mdp;
@@ -49,4 +60,5 @@ public class App {
 
 
     */
+}
 }
