@@ -46,7 +46,11 @@ public abstract class DAO<T> {
   */
   public abstract boolean update(T obj);
 
-  /**
+  //public abstract boolean delete(T obj);
+
+//  public abstract boolean update(T obj);
+
+    /**
   * Méthode de recherche des informations
   * @param id
   * @return T

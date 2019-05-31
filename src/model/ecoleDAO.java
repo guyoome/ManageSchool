@@ -5,76 +5,73 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
  * @author helen
  */
-public class ecoleDAO extends DAO<ecole>{
+public class ecoleDAO extends DAO<ecole> {
     private PreparedStatement findOne;
     private PreparedStatement findAll;
     private PreparedStatement create;
-    
-    
-    public ecoleDAO(Connexion conn) throws SQLException {
-    super(conn);
-    
-    //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM class");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO class (nom_ecole, adresse) VALUES (?, ?)");
+
+
+    public ecoleDAO(Connection conn) throws SQLException {
+        super(conn);
+        findOne = this.connect.prepareStatement("SELECT ");
+        findAll = this.connect.prepareStatement("SELECT * FROM ecole");
+        create = this.connect.prepareStatement("INSERT INTO ecole (nom_ecole, adresse) VALUES (?, ?)");
     }
 
     @Override
     @SuppressWarnings("empty-statement")
-  public boolean create(ecole obj) {
-     try{
-        create.setObject(1, obj.getNom());
-        create.setObject(2, obj.getAdresse());
-      }
-     catch(SQLException sql){
-         sql.printStackTrace();
-         //this.closeStatements();
-         return false;        
-      }
-    //this.closeStatements();
-    return true;
-  }
+    public boolean create(ecole obj) {
+        try {
+            //create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)")
+            create.setObject(1, obj.getID());
+            create.setObject(2, obj.getNom());
+            create.setObject(3, obj.getAdresse());
+
+            create.executeUpdate();
+            System.out.println("COUCOU : ecole créé !!");
+        } catch (SQLException sql) {
+            sql.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     @Override
-  public boolean delete(bulletin obj) {
-    return false;
-  }
-   
-    @Override
-  public boolean update(bulletin obj) {
-    return false;
-  }
-   
-    @Override
-  public bulletin find(int id) {
-    bulletin b = new bulletin();      
-      
-    try {
-      
-      ResultSet result = this.connect.createStatement(
-        ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
-      
-      //String requete = "SELECT * FROM eleve WHERE id = " + id;
-      //this.connect.ajouterRequete(requete);
-      if(result.first())
-        b = new bulletin(
-          id,
-          result.getString("appreciation"),
-          result.getInt("id_trimestre"),
-          result.getInt("id_inscription")
-        );         
-    } catch (SQLException e) {
-      e.printStackTrace();
+    public boolean delete(ecole obj) {
+        return false;
     }
-    return b;
-  }
+
+    @Override
+    public boolean update(ecole obj) {
+        return false;
+    }
+
+    @Override
+    public ecole find(int id) {
+        ecole o = new ecole();
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole WHERE id = " + id);
+            if (result.first())
+                o = new ecole(
+                        id,
+                        result.getString("nom_ecole"),
+                        result.getString("adresse")
+                );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return o;
+    }
 }
