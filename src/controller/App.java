@@ -1,11 +1,11 @@
 package controller;
 
-import model.People;
+
 
 import java.util.Scanner;
 import model.DAO;
 import model.bulletin;
-import model.bulletinDAO;
+import model.*;
 
 public class App {
     private People session = null;//variable de session
@@ -24,6 +24,13 @@ public class App {
 
     public static void main(String[] args) {
         // write your code here
+        
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        //On récupère un objet faisant le lien entre la base et nos objets 
+        DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
+        bulletin newBu = new bulletin(0,"TB",0,0);
+        bulletinDAO.create(newBu);
+                
         System.out.println("SCHOOL MANAGEMENT");
         String user, mdp;
         Scanner sc = new Scanner(System.in);
@@ -34,12 +41,12 @@ public class App {
         connection(user, mdp);
         
         //Testons des élèves
-        DAO<bulletin> bulletinDao = new bulletinDAO.(SdzConnection.getInstance());
+        /*DAO<bulletin> bulletinDao = new bulletinDAO.(SdzConnection.getInstance());
     for(int i = 1; i < 5; i++){
       Eleve eleve = eleveDao.find(i);
       System.out.println("Elève N°" + eleve.getId() + "  - " + eleve.getNom() + " " + eleve.getPrenom());
     }
 
 
-    }
+    */
 }

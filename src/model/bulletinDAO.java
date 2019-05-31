@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,10 +42,14 @@ public class bulletinDAO extends DAO<bulletin>{
       }
      catch(SQLException sql){
          sql.printStackTrace();
-         //this.closeStatements();
          return false;        
       }
-    //this.closeStatements();
+        try {
+            create.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     return true;
   }
 
