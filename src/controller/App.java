@@ -27,6 +27,8 @@ public class App {
         
         AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
         //On récupère un objet faisant le lien entre la base et nos objets 
+        
+        ///TEST BULLETIN
         DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
         bulletin newBu = new bulletin(0,"TB",0,0);
         bulletinDAO.create(newBu);
@@ -38,9 +40,23 @@ public class App {
         System.out.println("ID trimestre " + bubu.getIDtrimestre());
         
         
-        bulletinDAO.delete(bubu);
+        //bulletinDAO.delete(bubu);
         
-
+        ///TEST ANNEESCOLAIRE
+        
+        DAO<anneescolaire> anneescolaireDAO = adf.getAnneeScolaireDAO();
+        anneescolaire newAS = new anneescolaire();
+        
+        anneescolaireDAO.create(newAS);
+        
+        anneescolaire anan = anneescolaireDAO.find(1);
+        System.out.println("ID : " + anan.getID());
+        
+        
+        //anneescolaireDAO.delete(anan);
+        
+        
+        
                 
         System.out.println("SCHOOL MANAGEMENT");
         String user, mdp;

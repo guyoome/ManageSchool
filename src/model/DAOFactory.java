@@ -37,6 +37,7 @@ public class DAOFactory extends AbstractDAOFactory{
             tmp = DriverManager.getConnection("jdbc:mysql://localhost/projetjava","root","");
          } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("SALUT GUILLAUME");
          }
         conn = tmp;
       /*try {
@@ -61,6 +62,17 @@ public class DAOFactory extends AbstractDAOFactory{
       }
       return null;
   }
+  
+  @Override
+  public DAO getAnneeScolaireDAO(){
+      try {
+          return new anneescolaireDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+  
 /*
   @Override
   public DAO getEleveDAO(){

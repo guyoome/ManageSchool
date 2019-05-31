@@ -23,8 +23,8 @@ public class classeDAO extends DAO<classe>{
     super(conn);
     
     //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM class");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO class (nom, id_ecole, id_niveau, id_anneeScolaire) VALUES (?, ?, ?, ?)");
+    findAll = this.connect.prepareStatement("SELECT * FROM class");
+    create = this.connect.prepareStatement("INSERT INTO class (nom, id_ecole, id_niveau, id_anneeScolaire) VALUES (?, ?, ?, ?)");
     }
 
     @Override
@@ -79,4 +79,14 @@ public class classeDAO extends DAO<classe>{
     }
     return b;
   } 
+
+    @Override
+    public boolean delete(classe obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(classe obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

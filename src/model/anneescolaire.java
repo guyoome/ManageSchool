@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.sql.Connection;
+
 /**
  *
  * @author helen
@@ -22,6 +24,10 @@ public class anneescolaire {
     }
     
     public anneescolaire(){}
+
+    anneescolaire(Connection conn) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     ///getters and setters
     public void setID(int id)
