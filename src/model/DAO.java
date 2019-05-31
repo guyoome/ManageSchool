@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 
@@ -18,9 +19,9 @@ import java.sql.SQLException;
 
 
 public abstract class DAO<T> {
-  protected Connexion connect = null;
+  protected Connection connect = null;
    
-  public DAO(Connexion conn){
+  public DAO(Connection conn){
     this.connect = conn;
   }
    

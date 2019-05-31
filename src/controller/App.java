@@ -8,7 +8,7 @@ import model.bulletin;
 import model.*;
 
 public class App {
-    private People session = null;//variable de session
+    //private People session = null;//variable de session
 
     public static Boolean connection(String user, String mdp) {
         Boolean isAUTH = false;

@@ -101,6 +101,12 @@ public class Connexion {
     {
         return conn;
     }
+    
+    
+    public void setConnect(Connection conn)
+    {
+        this.conn = conn;
+    }
     /**
      * Méthode qui ajoute la table en parametre dans son ArrayList
      *

@@ -24,32 +24,30 @@ public class bulletinDAO extends DAO<bulletin>{
     private PreparedStatement create;
     
     
-    public bulletinDAO(Connexion conn) throws SQLException {
+    public bulletinDAO(Connection conn) throws SQLException {
     super(conn);
     
-    //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM bulletin");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)");
+    findOne = this.connect.prepareStatement("SELECT ");
+    findAll = this.connect.prepareStatement("SELECT * FROM bulletin");
+    create = this.connect.prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)");
     }
 
     @Override
     @SuppressWarnings("empty-statement")
   public boolean create(bulletin obj) {
      try{
+         //create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)")
         create.setObject(1, obj.getAppreciation());
         create.setObject(2, obj.getIDtrimestre());
-        create.setObject(3, obj.getIDinscription());;
+        create.setObject(3, obj.getIDinscription());
+        
+        create.executeUpdate();
+        System.out.println("COUCOU : bulletin créé !!");
       }
      catch(SQLException sql){
          sql.printStackTrace();
          return false;        
       }
-        try {
-            create.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
     return true;
   }
 
@@ -68,16 +66,19 @@ public class bulletinDAO extends DAO<bulletin>{
     bulletin b = new bulletin();      
       
     try {
-      /*
+      
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);*/
-      ResultSet result = null;
-      result = findAll.executeQuery();
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
       
-      
+      /*
+      ResultSet result = null;ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+      result = findAll.executeQuery();      
       String requete = "SELECT * FROM eleve WHERE id = " + id;
       this.connect.ajouterRequete(requete);
+*/
       if(result.first())
         b = new bulletin(
           id,

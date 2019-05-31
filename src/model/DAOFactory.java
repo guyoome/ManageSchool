@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class DAOFactory extends AbstractDAOFactory{
   protected static final Connection conn;
+  protected static Connexion newConnection;
   
   /**
      * this is a specific way to init final variable throwing exceptions
@@ -33,14 +34,18 @@ public class DAOFactory extends AbstractDAOFactory{
             // ecole is the name of database
             // second parameter the id for connecting to the mysql db ( on phpmyadmin)
             // thirs parameter is the password
-            tmp = DriverManager.getConnection("jdbc:mysql://localhost/ManageSchool","root","");
-         } catch (ClassNotFoundException ex) {
+            tmp = DriverManager.getConnection("jdbc:mysql://localhost/projetjava","root","");
+         } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
          }
-         catch (SQLException ex) {
-            Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
-        }
         conn = tmp;
+      /*try {
+          newConnection = new Connexion("projetjava", "root", "");
+          newConnection.setConnect(conn);
+      } catch (SQLException | ClassNotFoundException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }*/
+        
     }
 
 /*  public DAO getAnnneScolaireDAO(){
@@ -50,7 +55,7 @@ public class DAOFactory extends AbstractDAOFactory{
   @Override
   public DAO getBulletinDAO(){
       try {
-          return new bulletinDAO((Connexion) conn);
+          return new bulletinDAO(conn);
       } catch (SQLException ex) {
           Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
       }
