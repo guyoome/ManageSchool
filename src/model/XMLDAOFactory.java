@@ -10,7 +10,14 @@ package model;
  * @author helen
  */
 public class XMLDAOFactory extends AbstractDAOFactory {
-  @Override
+  
+    
+   @Override
+   public DAO getBulletinDAO() {
+    return null;
+   }
+    
+    /*@Override
   public DAO getClasseDAO() {      
     return null;
   }
@@ -29,4 +36,5 @@ public class XMLDAOFactory extends AbstractDAOFactory {
   public DAO getProfesseurDAO() {
     return null;
   }
+*/
 }

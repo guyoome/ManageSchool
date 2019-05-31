@@ -13,29 +13,28 @@ import java.sql.SQLException;
  *
  * @author helen
  */
-public class bulletinDAO extends DAO<bulletin>{
-    ///attributs
-    
+public class classeDAO extends DAO<classe>{
     private PreparedStatement findOne;
     private PreparedStatement findAll;
     private PreparedStatement create;
     
     
-    public bulletinDAO(Connexion conn) throws SQLException {
+    public classeDAO(Connexion conn) throws SQLException {
     super(conn);
     
     //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM bulletin");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)");
+    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM class");
+    create = this.connect.getConnect().prepareStatement("INSERT INTO class (nom, id_ecole, id_niveau, id_anneeScolaire) VALUES (?, ?, ?, ?)");
     }
 
     @Override
     @SuppressWarnings("empty-statement")
-  public boolean create(bulletin obj) {
+  public boolean create(classe obj) {
      try{
-        create.setObject(1, obj.getAppreciation());
-        create.setObject(2, obj.getIDtrimestre());
-        create.setObject(3, obj.getIDinscription());;
+        create.setObject(1, obj.getNom());
+        create.setObject(2, obj.getEcole());
+        create.setObject(3, obj.getNiveau());
+        create.setObject(4, obj.getAnneeScolaire());
       }
      catch(SQLException sql){
          sql.printStackTrace();
@@ -79,8 +78,5 @@ public class bulletinDAO extends DAO<bulletin>{
       e.printStackTrace();
     }
     return b;
-  }
-    
-    
-    
+  } 
 }

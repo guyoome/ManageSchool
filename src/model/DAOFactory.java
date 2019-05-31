@@ -5,26 +5,66 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author helen
  */
 public class DAOFactory extends AbstractDAOFactory{
-  protected static final Connection conn = SdzConnection.getInstance();   
+  protected static final Connection conn;
+  
+  /**
+     * this is a specific way to init final variable throwing exceptions
+     */
+    static{
+        Connection tmp = null;
+        
+        try {
+            // subscribe to your DriverManager as we use mysql-connector add this :
+            Class.forName("com.mysql.jdbc.Driver"); 
+            // get the connection variable
+            // jdbc:mysl:// is the protocol URI (like http:// is for http)
+            // localhost cause we are from a wamp server
+            // ecole is the name of database
+            // second parameter the id for connecting to the mysql db ( on phpmyadmin)
+            // thirs parameter is the password
+            tmp = DriverManager.getConnection("jdbc:mysql://localhost/ManageSchool","root","");
+         } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         catch (SQLException ex) {
+            Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn = tmp;
+    }
 
-  public DAO getClasseDAO(){
-    return new ClasseDAO(conn);
+/*  public DAO getAnnneScolaireDAO(){
+    return new anneescolaireDAO(conn);
+  }*/
+
+  @Override
+  public DAO getBulletinDAO(){
+      try {
+          return new bulletinDAO((Connexion) conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
   }
-
-  public DAO getProfesseurDAO(){
-    return new ProfesseurDAO(conn);
-  }
-
+/*
+  @Override
   public DAO getEleveDAO(){
     return new EleveDAO(conn);
   }
 
+  @Override
   public DAO getMatiereDAO(){
     return new MatiereDAO(conn);
   }   
+*/
 }

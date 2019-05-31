@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author helen
  */
-public class bulletinDAO extends DAO<bulletin>{
+public class anneescolaireDAO extends DAO<anneescolaire>{
     ///attributs
     
     private PreparedStatement findOne;
@@ -21,27 +21,16 @@ public class bulletinDAO extends DAO<bulletin>{
     private PreparedStatement create;
     
     
-    public bulletinDAO(Connexion conn) throws SQLException {
+    public anneescolaireDAO(Connexion conn) throws SQLException {
     super(conn);
     
     //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM bulletin");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)");
+    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM anneescolaire");
+    create = this.connect.getConnect().prepareStatement("INSERT INTO anneescolaire () VALUES ()");
     }
 
-    @Override
     @SuppressWarnings("empty-statement")
   public boolean create(bulletin obj) {
-     try{
-        create.setObject(1, obj.getAppreciation());
-        create.setObject(2, obj.getIDtrimestre());
-        create.setObject(3, obj.getIDinscription());;
-      }
-     catch(SQLException sql){
-         sql.printStackTrace();
-         //this.closeStatements();
-         return false;        
-      }
     //this.closeStatements();
     return true;
   }
