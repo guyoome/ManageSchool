@@ -8,6 +8,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Connection;
 
 /**
  *
@@ -61,13 +62,16 @@ public class bulletinDAO extends DAO<bulletin>{
     bulletin b = new bulletin();      
       
     try {
-      
+      /*
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);*/
+      ResultSet result = null;
+      result = findAll.executeQuery();
       
-      //String requete = "SELECT * FROM eleve WHERE id = " + id;
-      //this.connect.ajouterRequete(requete);
+      
+      String requete = "SELECT * FROM eleve WHERE id = " + id;
+      this.connect.ajouterRequete(requete);
       if(result.first())
         b = new bulletin(
           id,
