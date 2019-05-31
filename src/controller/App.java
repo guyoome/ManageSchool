@@ -1,11 +1,13 @@
 package controller;
 
 import model.People;
+import model.Teacher;
+import view.Fen;
 
 import java.util.Scanner;
 
 public class App {
-    private People session = null;//variable de session
+    private Teacher session = null;//variable de session
 
     public static Boolean connection(String user, String mdp) {
         Boolean isAUTH = false;
@@ -29,7 +31,6 @@ public class App {
         System.out.print("mdp : ");
         mdp = sc.nextLine();
         connection(user, mdp);
-
-
+        Fen gui = new Fen();
     }
 }
