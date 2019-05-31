@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,9 +14,16 @@ import java.sql.SQLException;
  * @author helen
  */
 public class bulletinDAO extends DAO<bulletin>{
-    public bulletinDAO(Connexion conn) {
+    ///attributs
+    
+    private PreparedStatement findOne;
+    
+    
+    public bulletinDAO(Connexion conn) throws SQLException {
     super(conn);
-  }
+    
+    findOne = this.connect.getConnect().prepareStatement("ecrire quelque chose en SQL ici");
+    }
 
     @Override
   public boolean create(bulletin obj) {
