@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,12 +20,12 @@ public class enseignementDAO extends DAO<enseignement>{
     private PreparedStatement create;
     
     
-    public enseignementDAO(Connexion conn) throws SQLException {
+    public enseignementDAO(Connection conn) throws SQLException {
     super(conn);
-    
-    //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM class");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO class (id_classe, id_discipline, id_personne) VALUES (?, ?, ?)");
+
+        findOne = this.connect.prepareStatement("SELECT ");
+        findAll = this.connect.prepareStatement("SELECT * FROM enseignement");
+        create = this.connect.prepareStatement("INSERT INTO enseignement (classe, discipline, personne) VALUES (?, ?, ?)");
     }
 
     @Override
@@ -45,38 +46,35 @@ public class enseignementDAO extends DAO<enseignement>{
   }
 
     @Override
-  public boolean delete(bulletin obj) {
+  public boolean delete(enseignement obj) {
     return false;
   }
    
     @Override
-  public boolean update(bulletin obj) {
+  public boolean update(enseignement obj) {
     return false;
   }
-   
+
     @Override
-  public bulletin find(int id) {
-    bulletin b = new bulletin();      
-      
-    try {
-      
-      ResultSet result = this.connect.createStatement(
-        ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
-      
-      //String requete = "SELECT * FROM eleve WHERE id = " + id;
-      //this.connect.ajouterRequete(requete);
-      if(result.first())
-        b = new bulletin(
-          id,
-          result.getString("appreciation"),
-          result.getInt("id_trimestre"),
-          result.getInt("id_inscription")
-        );         
-    } catch (SQLException e) {
-      e.printStackTrace();
+    public enseignement find(int id) {
+        enseignement o = new enseignement();
+
+        try {
+
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM enseignement WHERE id = " + id);
+            if(result.first())
+                o = new enseignement(
+                        id,
+                        result.getInt("id_classe"),
+                        result.getInt("id_discipline"),
+                        result.getInt("id_personne")
+                );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return o;
     }
-    return b;
-  }
     
 }
