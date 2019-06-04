@@ -105,12 +105,34 @@ public class App {
         disciplineDAO.create(newdidi);
         
         //find
-        discipline didi = disciplineDAO.find(3);
+        discipline didi = disciplineDAO.find(1);
         System.out.println("ID DISCIPLINE: " + didi.getID());
         System.out.println("Nom : " + didi.getNom());
         
         //delete
-        disciplineDAO.delete(didi);
+        //disciplineDAO.delete(didi);
+        
+        ///TEST ECOLE
+        
+        DAO<ecole> ecoleDAO = adf.getEcoleDAO();
+        
+        //creation
+        ecole newecole = new ecole(0,"Lycee Richelieu", "rue Gorges Sand, Rueil Malmaison");
+        ecoleDAO.create(newecole);
+        
+        //find
+        ecole eco = ecoleDAO.find(2);
+        System.out.println("ID DISCIPLINE: " + eco.getID());
+        System.out.println("Nom : " + eco.getNom());
+        System.out.println("Adresse : " + eco.getAdresse());
+        
+        //delete
+        //ecoleDAO.delete(eco);
+        
+        
+        
+        
+        
         
         
         

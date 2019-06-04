@@ -20,6 +20,8 @@ public abstract class AbstractDAOFactory {
   public abstract DAO getClasseDAO();
   public abstract DAO getDetailBulletinDAO();
   public abstract DAO getDisciplineDAO();
+  public abstract DAO getEcoleDAO();
+  
  
   
   

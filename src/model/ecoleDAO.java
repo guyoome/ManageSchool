@@ -33,12 +33,12 @@ public class ecoleDAO extends DAO<ecole> {
     public boolean create(ecole obj) {
         try {
             //create = this.connect.getConnect().prepareStatement("INSERT INTO bulletin (appreciation, id_trimestre, id_inscription) VALUES (?, ?, ?)")
-            create.setObject(1, obj.getID());
-            create.setObject(2, obj.getNom());
-            create.setObject(3, obj.getAdresse());
+            create.setObject(1, obj.getNom());
+            create.setObject(2, obj.getAdresse());
 
             create.executeUpdate();
             System.out.println("COUCOU : ecole créé !!");
+            
         } catch (SQLException sql) {
             sql.printStackTrace();
             return false;
@@ -48,7 +48,16 @@ public class ecoleDAO extends DAO<ecole> {
 
     @Override
     public boolean delete(ecole obj) {
-        return false;
+        try {
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM ecole WHERE id_ecole = " + obj.getID());         
+            delete.executeUpdate();
+            System.out.println("ecole supprimée !");
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ecole PAS supprimée ! ");
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -62,7 +71,7 @@ public class ecoleDAO extends DAO<ecole> {
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole WHERE id = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole WHERE id_ecole = " + id);
             if (result.first())
                 o = new ecole(
                         id,

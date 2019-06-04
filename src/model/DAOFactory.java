@@ -104,15 +104,14 @@ public class DAOFactory extends AbstractDAOFactory{
       return null;
   }
   
-/*
   @Override
-  public DAO getEleveDAO(){
-    return new EleveDAO(conn);
+  public DAO getEcoleDAO(){
+      try {
+          return new ecoleDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
   }
 
-  @Override
-  public DAO getMatiereDAO(){
-    return new MatiereDAO(conn);
-  }   
-*/
 }

@@ -37,4 +37,8 @@ public class XMLDAOFactory extends AbstractDAOFactory {
         return null;
     }
     
+    @Override
+    public DAO getEcoleDAO() {
+        return null;
+    }
 }
