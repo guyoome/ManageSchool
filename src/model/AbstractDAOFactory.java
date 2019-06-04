@@ -21,6 +21,7 @@ public abstract class AbstractDAOFactory {
   public abstract DAO getDetailBulletinDAO();
   public abstract DAO getDisciplineDAO();
   public abstract DAO getEcoleDAO();
+  public abstract DAO getEnseignementDAO();
   
  
   

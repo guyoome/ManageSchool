@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +27,7 @@ public class enseignementDAO extends DAO<enseignement>{
 
         findOne = this.connect.prepareStatement("SELECT ");
         findAll = this.connect.prepareStatement("SELECT * FROM enseignement");
-        create = this.connect.prepareStatement("INSERT INTO enseignement (classe, discipline, personne) VALUES (?, ?, ?)");
+        create = this.connect.prepareStatement("INSERT INTO enseignement (id_classe, id_discipline, id_personne) VALUES (?, ?, ?)");
     }
 
     @Override
@@ -35,6 +37,9 @@ public class enseignementDAO extends DAO<enseignement>{
         create.setObject(1, obj.getClasse());
         create.setObject(2, obj.getDiscipline());
         create.setObject(3, obj.getPersonne());
+        
+        create.executeUpdate();
+        System.out.println("COUCOU : enseignement créé !!");
       }
      catch(SQLException sql){
          sql.printStackTrace();
@@ -47,7 +52,16 @@ public class enseignementDAO extends DAO<enseignement>{
 
     @Override
   public boolean delete(enseignement obj) {
-    return false;
+    try {
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM enseignement WHERE id = " + obj.getID());         
+            delete.executeUpdate();
+            System.out.println("enseignement supprimée !");
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("enseignement PAS supprimée ! ");
+            return false;
+        }
+        return true;
   }
    
     @Override

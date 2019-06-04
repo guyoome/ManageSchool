@@ -113,5 +113,15 @@ public class DAOFactory extends AbstractDAOFactory{
       }
       return null;
   }
+  
+  @Override
+  public DAO getEnseignementDAO(){
+      try {
+          return new enseignementDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
 
 }

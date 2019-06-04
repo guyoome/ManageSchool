@@ -28,7 +28,7 @@ public class App {
         AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
         //On récupère un objet faisant le lien entre la base et nos objets 
         
-        ///TEST BULLETIN
+        ///TEST BULLETIN -------------------------------------------------------------------------------------------
         DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
         bulletin newBu = new bulletin(0,"AB",0,0);
         bulletinDAO.create(newBu);
@@ -42,7 +42,7 @@ public class App {
         
         //bulletinDAO.delete(bubu);
         
-        ///TEST ANNEESCOLAIRE
+        ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
         ///PB ca n'increment pas tout seul et ca s'est embetant ... A rectifier
         
@@ -58,7 +58,7 @@ public class App {
         //anneescolaireDAO.delete(anan);
         
         
-        ///TEST CLASSE
+        ///TEST CLASSE -------------------------------------------------------------------------------------------
         
         DAO<classe> classeDAO = adf.getClasseDAO();
         
@@ -77,7 +77,7 @@ public class App {
         //delete
         //classeDAO.delete(clacla);
         
-        ///TEST DETAIL BULLETIN
+        ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
         DAO<detailbulletin> detailBulletinDAO = adf.getDetailBulletinDAO();
         
@@ -96,7 +96,7 @@ public class App {
         //detailBulletinDAO.delete(dbubu);
         
         
-        ///TEST DISCIPLINE
+        ///TEST DISCIPLINE -------------------------------------------------------------------------------------------
         
         DAO<discipline> disciplineDAO = adf.getDisciplineDAO();
         
@@ -112,7 +112,7 @@ public class App {
         //delete
         //disciplineDAO.delete(didi);
         
-        ///TEST ECOLE
+        ///TEST ECOLE -------------------------------------------------------------------------------------------
         
         DAO<ecole> ecoleDAO = adf.getEcoleDAO();
         
@@ -122,7 +122,7 @@ public class App {
         
         //find
         ecole eco = ecoleDAO.find(2);
-        System.out.println("ID DISCIPLINE: " + eco.getID());
+        System.out.println("ID ECOLE: " + eco.getID());
         System.out.println("Nom : " + eco.getNom());
         System.out.println("Adresse : " + eco.getAdresse());
         
@@ -130,6 +130,22 @@ public class App {
         //ecoleDAO.delete(eco);
         
         
+        ///TEST ENSEIGNEMENT -------------------------------------------------------------------------------------------
+        DAO<enseignement> enseignementDAO = adf.getEnseignementDAO();
+              
+        //creation
+        enseignement newEns = new enseignement(0,0,0,0);
+        enseignementDAO.create(newEns);
+        
+        //find 
+        enseignement ens = enseignementDAO.find(1);
+        System.out.println("ID ENSEIGNEMENT: " + ens.getID());
+        System.out.println("Classe : " + ens.getClasse());
+        System.out.println("Discipline : " + ens.getDiscipline());
+        System.out.println("Personne : " + ens.getPersonne());
+        
+        //delete
+        //enseignement.delete(ens);
         
         
         
