@@ -16,25 +16,10 @@ public class XMLDAOFactory extends AbstractDAOFactory {
    public DAO getBulletinDAO() {
     return null;
    }
+   
+   @Override
+    public DAO getAnneeScolaireDAO() {
+        return null;
+    }
     
-    /*@Override
-  public DAO getClasseDAO() {      
-    return null;
-  }
-
-  @Override
-  public DAO getEleveDAO() {
-    return null;
-  }
-
-  @Override
-  public DAO getMatiereDAO() {
-    return null;
-  }
-
-  @Override
-  public DAO getProfesseurDAO() {
-    return null;
-  }
-*/
 }

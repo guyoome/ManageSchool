@@ -30,7 +30,7 @@ public class App {
         
         ///TEST BULLETIN
         DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
-        bulletin newBu = new bulletin(0,"TB",0,0);
+        bulletin newBu = new bulletin(0,"AB",0,0);
         bulletinDAO.create(newBu);
         
         bulletin bubu = bulletinDAO.find(1);
@@ -44,8 +44,10 @@ public class App {
         
         ///TEST ANNEESCOLAIRE
         
+        ///PB ca n'increment pas tout seul et ca s'est embetant ... A rectifier
+        
         DAO<anneescolaire> anneescolaireDAO = adf.getAnneeScolaireDAO();
-        anneescolaire newAS = new anneescolaire();
+        anneescolaire newAS = new anneescolaire(1);
         
         anneescolaireDAO.create(newAS);
         
