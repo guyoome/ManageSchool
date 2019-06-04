@@ -5,9 +5,12 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,12 +22,12 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
     private PreparedStatement create;
     
     
-    public detailbulletinDAO(Connexion conn) throws SQLException {
+    public detailbulletinDAO(Connection conn) throws SQLException {
     super(conn);
     
     //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.getConnect().prepareStatement("SELECT * FROM class");
-    create = this.connect.getConnect().prepareStatement("INSERT INTO class (appreciation, id_bulletin, id_enseignement) VALUES (?, ?, ?)");
+    findAll = this.connect.prepareStatement("SELECT * FROM detailbulletin");
+    create = this.connect.prepareStatement("INSERT INTO detailbulletin (appreciation, id_bulletin, id_enseignement) VALUES (?, ?, ?)");
     }
 
     @Override
@@ -34,6 +37,9 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
         create.setObject(1, obj.getAppreciation());
         create.setObject(2, obj.getBulletin());
         create.setObject(3, obj.getEnseignement());
+        
+        create.executeUpdate();
+        System.out.println("COUCOU : detailbulletin créée !!");
       }
      catch(SQLException sql){
          sql.printStackTrace();
@@ -43,39 +49,48 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
     //this.closeStatements();
     return true;
   }
-
-    @Override
-  public boolean delete(bulletin obj) {
-    return false;
-  }
    
     @Override
-  public boolean update(bulletin obj) {
-    return false;
-  }
-   
-    @Override
-  public bulletin find(int id) {
-    bulletin b = new bulletin();      
+  public detailbulletin find(int id) {
+    detailbulletin b = new detailbulletin();      
       
     try {
       
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM detailbulletin WHERE id = " + id);
       
       //String requete = "SELECT * FROM eleve WHERE id = " + id;
       //this.connect.ajouterRequete(requete);
       if(result.first())
-        b = new bulletin(
+        b = new detailbulletin(
           id,
           result.getString("appreciation"),
-          result.getInt("id_trimestre"),
-          result.getInt("id_inscription")
+          result.getInt("id_bulletin"),
+          result.getInt("id_enseignement")
         );         
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return b;
   }
+
+    @Override
+    public boolean delete(detailbulletin obj) {
+        try {
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM detailbulletin WHERE id = " + obj.getID());         
+            delete.executeUpdate();
+            System.out.println("detailbulletin supprimée !");
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("detailbulletin PAS supprimée ! ");
+            return false;
+        }
+    return true;
+    }
+
+    @Override
+    public boolean update(detailbulletin obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

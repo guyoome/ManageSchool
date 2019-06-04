@@ -27,4 +27,9 @@ public class XMLDAOFactory extends AbstractDAOFactory {
         return null;
     }
     
+    @Override
+    public DAO getDetailBulletinDAO() {
+        return null;
+    }
+    
 }

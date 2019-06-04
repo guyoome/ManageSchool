@@ -77,6 +77,23 @@ public class App {
         //delete
         //classeDAO.delete(clacla);
         
+        ///TEST DETAIL BULLETIN
+        
+        DAO<detailbulletin> detailBulletinDAO = adf.getDetailBulletinDAO();
+        
+        //creation
+        detailbulletin newDbubu = new detailbulletin(0,"Bon travail",0,0);
+        detailBulletinDAO.create(newDbubu);
+        
+        //find
+        detailbulletin dbubu = detailBulletinDAO.find(3);
+        System.out.println("ID DETAIL BULLETIN: " + dbubu.getID());
+        System.out.println("Appreciation : " + dbubu.getAppreciation());
+        System.out.println("ID bulletin : " + dbubu.getBulletin());
+        System.out.println("ID enseignement " + dbubu.getEnseignement());
+        
+        //delete
+        //detailBulletinDAO.delete(dbubu);
         
         
         

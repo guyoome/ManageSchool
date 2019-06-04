@@ -18,6 +18,9 @@ public abstract class AbstractDAOFactory {
   public abstract DAO getBulletinDAO();
   public abstract DAO getAnneeScolaireDAO();
   public abstract DAO getClasseDAO();
+  public abstract DAO getDetailBulletinDAO();
+  
+  
   
   
    
