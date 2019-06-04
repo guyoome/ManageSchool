@@ -147,7 +147,38 @@ public class App {
         //delete
         //enseignement.delete(ens);
         
+        ///TEST EVALUATION -------------------------------------------------------------------------------------------
+        DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();
+              
+        //creation
+        evaluation newEv = new evaluation(0,"Attention aux fautes de calculs",13,0);
+        evaluationDAO.create(newEv);
         
+        //find 
+        evaluation ev = evaluationDAO.find(1);
+        System.out.println("ID EVALUATION: " + ev.getID());
+        System.out.println("Appreciation : " + ev.getAppreciation());
+        System.out.println("Note : " + ev.getNote());
+        System.out.println("DetailBulletin : " + ev.getDetailBulletin());
+        
+        //delete
+        //evaluationDAO.delete(ev);
+        
+        ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
+        DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
+              
+        //creation
+        inscription newIns = new inscription(0,1,3);
+        inscriptionDAO.create(newIns);
+        
+        //find 
+        inscription ins = inscriptionDAO.find(1);
+        System.out.println("ID INSCRIPTION: " + ins.getID());
+        System.out.println("classe : " + ins.getClasse());
+        System.out.println("personne : " + ins.getPersonne());
+        
+        //delete
+        //inscriptionDAO.delete(ins);
         
         
         

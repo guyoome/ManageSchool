@@ -124,4 +124,24 @@ public class DAOFactory extends AbstractDAOFactory{
       return null;
   }
 
+  @Override
+  public DAO getEvaluationDAO(){
+      try {
+          return new evaluationDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+  
+  @Override
+  public DAO getInscriptionDAO(){
+      try {
+          return new inscriptionDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+
 }

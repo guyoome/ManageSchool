@@ -22,12 +22,10 @@ public abstract class AbstractDAOFactory {
   public abstract DAO getDisciplineDAO();
   public abstract DAO getEcoleDAO();
   public abstract DAO getEnseignementDAO();
+  public abstract DAO getEvaluationDAO();
+  public abstract DAO getInscriptionDAO();
   
- 
-  
-  
-  
-  
+    
   
    
   
