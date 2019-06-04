@@ -17,6 +17,9 @@ public abstract class AbstractDAOFactory {
   //Retourne un objet Bulletin interagissant avec la BDD
   public abstract DAO getBulletinDAO();
   public abstract DAO getAnneeScolaireDAO();
+  public abstract DAO getClasseDAO();
+  
+  
    
   
   //Méthode permettant de récupérer les Factory

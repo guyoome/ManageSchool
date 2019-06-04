@@ -22,4 +22,9 @@ public class XMLDAOFactory extends AbstractDAOFactory {
         return null;
     }
     
+    @Override
+    public DAO getClasseDAO() {
+        return null;
+    }
+    
 }

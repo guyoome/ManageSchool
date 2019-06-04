@@ -5,9 +5,12 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,12 +22,12 @@ public class classeDAO extends DAO<classe>{
     private PreparedStatement create;
     
     
-    public classeDAO(Connexion conn) throws SQLException {
-    super(conn);
+    public classeDAO(Connection conn) throws SQLException {
+        super(conn);
     
-    //findOne = this.connect.getConnect().prepareStatement("SELECT ");
-    findAll = this.connect.prepareStatement("SELECT * FROM class");
-    create = this.connect.prepareStatement("INSERT INTO class (nom, id_ecole, id_niveau, id_anneeScolaire) VALUES (?, ?, ?, ?)");
+        //findOne = this.connect.getConnect().prepareStatement("SELECT ");
+        findAll = this.connect.prepareStatement("SELECT * FROM classe");
+        create = this.connect.prepareStatement("INSERT INTO classe (nom, id_ecole, id_niveau, id_anneeScolaire) VALUES (?, ?, ?, ?)");
     }
 
     @Override
@@ -35,8 +38,12 @@ public class classeDAO extends DAO<classe>{
         create.setObject(2, obj.getEcole());
         create.setObject(3, obj.getNiveau());
         create.setObject(4, obj.getAnneeScolaire());
+        
+        create.executeUpdate();
+        System.out.println("COUCOU : classe créée !!");
       }
      catch(SQLException sql){
+         System.out.println("COUCOU : classe PAS créée !!");
          sql.printStackTrace();
          //this.closeStatements();
          return false;        
@@ -44,35 +51,26 @@ public class classeDAO extends DAO<classe>{
     //this.closeStatements();
     return true;
   }
-
-    @Override
-  public boolean delete(bulletin obj) {
-    return false;
-  }
    
     @Override
-  public boolean update(bulletin obj) {
-    return false;
-  }
-   
-    @Override
-  public bulletin find(int id) {
-    bulletin b = new bulletin();      
+  public classe find(int id) {
+    classe b = new classe();      
       
     try {
       
       ResultSet result = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne WHERE id = " + id);
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe WHERE id = " + id);
       
       //String requete = "SELECT * FROM eleve WHERE id = " + id;
       //this.connect.ajouterRequete(requete);
       if(result.first())
-        b = new bulletin(
+        b = new classe(
           id,
-          result.getString("appreciation"),
-          result.getInt("id_trimestre"),
-          result.getInt("id_inscription")
+          result.getString("nom"),
+          result.getInt("id_ecole"),
+          result.getInt("id_niveau"),
+          result.getInt("id_anneeScolaire")
         );         
     } catch (SQLException e) {
       e.printStackTrace();
@@ -82,7 +80,15 @@ public class classeDAO extends DAO<classe>{
 
     @Override
     public boolean delete(classe obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM classe WHERE id = " + obj.getID());         
+            delete.executeUpdate();
+            System.out.println("classe supprimée !");
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    return true;
     }
 
     @Override

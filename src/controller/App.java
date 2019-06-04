@@ -34,7 +34,7 @@ public class App {
         bulletinDAO.create(newBu);
         
         bulletin bubu = bulletinDAO.find(1);
-        System.out.println("ID : " + bubu.getID());
+        System.out.println("ID BULLETIN: " + bubu.getID());
         System.out.println("Appreciation : " + bubu.getAppreciation());
         System.out.println("ID inscription : " + bubu.getIDinscription());
         System.out.println("ID trimestre " + bubu.getIDtrimestre());
@@ -49,17 +49,38 @@ public class App {
         DAO<anneescolaire> anneescolaireDAO = adf.getAnneeScolaireDAO();
         anneescolaire newAS = new anneescolaire(1);
         
-        anneescolaireDAO.create(newAS);
+        //anneescolaireDAO.create(newAS);
         
         anneescolaire anan = anneescolaireDAO.find(1);
-        System.out.println("ID : " + anan.getID());
+        System.out.println("ID ANNEE SCOLAIRE: " + anan.getID());
         
         
         //anneescolaireDAO.delete(anan);
         
         
+        ///TEST CLASSE
         
-                
+        DAO<classe> classeDAO = adf.getClasseDAO();
+        
+        //creation
+        classe newClass = new classe(2, "CE1a", 0,0,0);
+        classeDAO.create(newClass);
+        
+        //find
+        classe clacla = classeDAO.find(2);
+        System.out.println("ID CLASSE: " + clacla.getID());
+        System.out.println("Nom : " + clacla.getNom());
+        System.out.println("ID annee scolaire : " + clacla.getAnneeScolaire());
+        System.out.println("ID ecole " + clacla.getEcole());
+        System.out.println("ID niveau " + clacla.getNiveau());
+        
+        //delete
+        //classeDAO.delete(clacla);
+        
+        
+        
+        
+         /*       
         System.out.println("SCHOOL MANAGEMENT");
         String user, mdp;
         Scanner sc = new Scanner(System.in);
@@ -68,15 +89,7 @@ public class App {
         System.out.print("mdp : ");
         mdp = sc.nextLine();
         connection(user, mdp);
+        */
         
-        //Testons des élèves
-        /*DAO<bulletin> bulletinDao = new bulletinDAO.(SdzConnection.getInstance());
-    for(int i = 1; i < 5; i++){
-      Eleve eleve = eleveDao.find(i);
-      System.out.println("Elève N°" + eleve.getId() + "  - " + eleve.getNom() + " " + eleve.getPrenom());
     }
-
-
-    */
-}
 }
