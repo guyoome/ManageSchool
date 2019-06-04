@@ -94,6 +94,16 @@ public class DAOFactory extends AbstractDAOFactory{
       return null;
   }
   
+  @Override
+  public DAO getDisciplineDAO(){
+      try {
+          return new disciplineDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+  
 /*
   @Override
   public DAO getEleveDAO(){

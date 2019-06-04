@@ -96,6 +96,23 @@ public class App {
         //detailBulletinDAO.delete(dbubu);
         
         
+        ///TEST DISCIPLINE
+        
+        DAO<discipline> disciplineDAO = adf.getDisciplineDAO();
+        
+        //creation
+        discipline newdidi = new discipline(0,"art");
+        disciplineDAO.create(newdidi);
+        
+        //find
+        discipline didi = disciplineDAO.find(3);
+        System.out.println("ID DISCIPLINE: " + didi.getID());
+        System.out.println("Nom : " + didi.getNom());
+        
+        //delete
+        disciplineDAO.delete(didi);
+        
+        
         
          /*       
         System.out.println("SCHOOL MANAGEMENT");
