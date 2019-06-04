@@ -5,11 +5,11 @@ public class Student extends personne {
         super();
     }
 
-    public Student(String nom, String prenom) {
+   /* public Student(String nom, String prenom) {
         super(nom, prenom);
     }
 
     public Student(String name, String firstname, int id) {
         super(name, firstname, id);
-    }
+    }*/
 }
