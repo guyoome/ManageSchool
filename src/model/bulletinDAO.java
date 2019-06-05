@@ -68,7 +68,45 @@ public class bulletinDAO extends DAO<bulletin>{
    
     @Override
   public boolean update(bulletin obj) {
-    return false;
+      String update = "UPDATE bulletin SET ";
+      boolean succeed = false;
+      
+        if(!("".equals(obj.getAppreciation()))){
+          update += "appreciation= "+"'" +obj.getAppreciation()+"'" ;
+          succeed = true;
+          if(-1 != obj.getIDinscription() || 
+             -1 != obj.getIDtrimestre())
+            {
+                 update += " , ";     
+            }
+        }
+        if( -1 != obj.getIDinscription() ){
+            update += "id_inscription = '" + obj.getIDinscription() + "'"; 
+            succeed = true;
+            if(-1 != obj.getIDtrimestre() )
+            {
+                 update += " , ";     
+            }
+        }
+        if( -1 != obj.getIDtrimestre() ){
+           update += "id_trimestre = '" + obj.getIDtrimestre()+ "'";  
+           succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("bulletin modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
   }
    
     @Override

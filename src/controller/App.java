@@ -62,6 +62,9 @@ public class App {
             System.out.println("ID trimestre: " + RechercheBulletin.get(i).getIDtrimestre());
         }*/
         
+        bulletin bulletinM = new bulletin(5,"",-1,1);
+        bulletinDAO.update(bulletinM);
+        
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
         ///PB ca n'increment pas tout seul et ca s'est embetant ... A rectifier
@@ -436,14 +439,14 @@ public class App {
         }*/
         
         ArrayList<trimestre> RechercheTrim = trimestreDAO.rechercher("debut", "01/09/2018");
-        for(int i = 0; i<RechercheTrim.size(); i++)
+        /*for(int i = 0; i<RechercheTrim.size(); i++)
         {
             System.out.println("ID TRIMESTRE RECHERCHE ====================================: " + RechercheTrim.get(i).getID());
             System.out.println("numero: " + RechercheTrim.get(i).getNum());
             System.out.println("debut: " + RechercheTrim.get(i).getDebut());
             System.out.println("fin: " + RechercheTrim.get(i).getFin());
             System.out.println("anneeScolaire: " + RechercheTrim.get(i).getAnneeScolaire());
-        }
+        }*/
         
         
          /*       
