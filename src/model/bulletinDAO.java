@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -101,6 +102,78 @@ public class bulletinDAO extends DAO<bulletin>{
     }
     return b;
   }
+
+    @Override
+    public ArrayList<bulletin> findAll() {
+        ArrayList<bulletin> maListe = new ArrayList<>();
+
+        int id = 0;
+        String appreciation = "";
+        int id_trimestre = 0;
+        int id_inscription = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                appreciation = result.getString("appreciation");
+                id_trimestre = result.getInt("id_trimestre");
+                id_inscription = result.getInt("id_inscription");
+                bulletin newBulletin = new bulletin(id, appreciation, id_trimestre, id_inscription);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;
+    }
+
+    @Override
+    public ArrayList<bulletin> rechercher(String parametreTable, String parametre) {
+        bulletin b = new bulletin();
+        ArrayList<bulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new bulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_trimestre"), result.getInt("id_inscription")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<bulletin> rechercher(String parametreTable, int parametre) {
+        bulletin b = new bulletin();
+        ArrayList<bulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin WHERE " + parametreTable + " = " + parametre);
+      
+        while(result.next())
+        {    
+            b = new bulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_trimestre"), result.getInt("id_inscription")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
     
     
     

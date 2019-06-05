@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,5 +83,75 @@ public class ecoleDAO extends DAO<ecole> {
             e.printStackTrace();
         }
         return o;
+    }
+
+    @Override
+    public ArrayList<ecole> findAll() {
+       ArrayList<ecole> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        String adresse = "";
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole");
+            while(result.next())
+            {
+                id = result.getInt("id_ecole");
+                nom = result.getString("nom_ecole");
+                adresse = result.getString("adresse");
+                ecole newBulletin = new ecole(id, nom, adresse);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(ecoleDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
+    }
+
+    @Override
+    public ArrayList<ecole> rechercher(String parametreTable, String parametre) {
+        ecole b = new ecole();
+        ArrayList<ecole> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new ecole(result.getInt("id_ecole"), result.getString("nom_ecole"),result.getString("adresse") ); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<ecole> rechercher(String parametreTable, int parametre) {
+        ecole b = new ecole();
+        ArrayList<ecole> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ecole WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new ecole(result.getInt("id_ecole"), result.getString("nom_ecole"),result.getString("adresse") ); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 }

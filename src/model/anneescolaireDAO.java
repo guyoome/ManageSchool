@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,8 +84,40 @@ public class anneescolaireDAO extends DAO<anneescolaire>{
     return b;
   }
 
-    
-    
-    
-    
+    @Override
+    public ArrayList<anneescolaire> findAll() {
+        ArrayList<anneescolaire> maListe = new ArrayList<>();
+
+        int id = 0;
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM anneescolaire");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                anneescolaire newAnneeScolaire = new anneescolaire(id);
+                maListe.add(newAnneeScolaire);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(anneescolaireDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;
+    }
+
+    @Override
+    public ArrayList<anneescolaire> rechercher(String parametreTable, String parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<anneescolaire> rechercher(String parametreTable, int parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+
+    
+    
+    
+    
+

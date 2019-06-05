@@ -24,7 +24,9 @@ public abstract class AbstractDAOFactory {
   public abstract DAO getEnseignementDAO();
   public abstract DAO getEvaluationDAO();
   public abstract DAO getInscriptionDAO();
-  
+  public abstract DAO getNiveauDAO();
+  public abstract DAO getPersonneDAO();
+  public abstract DAO getTrimestreDAO();
     
   
    

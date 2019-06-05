@@ -2,6 +2,7 @@ package controller;
 
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.DAO;
 import model.bulletin;
@@ -42,6 +43,25 @@ public class App {
         
         //bulletinDAO.delete(bubu);
         
+        //find all
+        ArrayList<bulletin> alBulletin = bulletinDAO.findAll();
+        /*for(int i =0; i<alBulletin.size(); i++)
+        {
+            System.out.println("ID BULLETIN ARRAY LIST: " + alBulletin.get(i).getID());
+            System.out.println("Appreciation: " + alBulletin.get(i).getAppreciation());
+            System.out.println("ID inscription: " + alBulletin.get(i).getIDinscription());
+            System.out.println("ID trimestre: " + alBulletin.get(i).getIDtrimestre());
+        }*/
+        
+        ArrayList<bulletin> RechercheBulletin = bulletinDAO.rechercher("appreciation", "Felicitation");
+        /*for(int i = 0; i<RechercheBulletin.size(); i++)
+        {
+            System.out.println("ID BULLETIN RECHERCHE ==================================: " + RechercheBulletin.get(i).getID());
+            System.out.println("Appreciation: " + RechercheBulletin.get(i).getAppreciation());
+            System.out.println("ID inscription: " + RechercheBulletin.get(i).getIDinscription());
+            System.out.println("ID trimestre: " + RechercheBulletin.get(i).getIDtrimestre());
+        }*/
+        
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
         ///PB ca n'increment pas tout seul et ca s'est embetant ... A rectifier
@@ -56,6 +76,13 @@ public class App {
         
         
         //anneescolaireDAO.delete(anan);
+        
+        //find all
+        ArrayList<anneescolaire> aScolaire = anneescolaireDAO.findAll();
+        for(int i =0; i<aScolaire.size(); i++)
+        {
+            System.out.println("ID ANNEE SCOLAIRE ARRAY LIST: " + aScolaire.get(i).getID());
+        }
         
         
         ///TEST CLASSE -------------------------------------------------------------------------------------------
@@ -77,6 +104,27 @@ public class App {
         //delete
         //classeDAO.delete(clacla);
         
+        //findALL
+        ArrayList<classe> alClasse = classeDAO.findAll();
+        /*for(int i =0; i<alClasse.size(); i++)
+        {
+            System.out.println("ID BULLETIN ARRAY LIST: " + alClasse.get(i).getID());
+            System.out.println("Appreciation: " + alClasse.get(i).getNom());
+            System.out.println("ID annee scolaire: " + alClasse.get(i).getAnneeScolaire());
+            System.out.println("ID ecole: " + alClasse.get(i).getEcole());
+            System.out.println("ID niveau " + alClasse.get(i).getNiveau());
+        }*/
+        
+        ArrayList<classe> RechercheClasse = classeDAO.rechercher("nom", "CE1a");
+        /*for(int i = 0; i<RechercheClasse.size(); i++)
+        {
+            System.out.println("ID BULLETIN RECHERCHE ====================================: " + RechercheClasse.get(i).getID());
+            System.out.println("Appreciation: " + RechercheClasse.get(i).getNom());
+            System.out.println("ID annee scolaire: " + RechercheClasse.get(i).getAnneeScolaire());
+            System.out.println("ID ecole: " + RechercheClasse.get(i).getEcole());
+            System.out.println("ID niveau " + RechercheClasse.get(i).getNiveau());
+        }*/
+        
         ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
         DAO<detailbulletin> detailBulletinDAO = adf.getDetailBulletinDAO();
@@ -95,6 +143,26 @@ public class App {
         //delete
         //detailBulletinDAO.delete(dbubu);
         
+        //findALL
+        ArrayList<detailbulletin> alDbulletin = detailBulletinDAO.findAll();
+        
+        /*for(int i =0; i<alDbulletin.size(); i++)
+        {
+            System.out.println("ID DETAIL BULLETIN ARRAY LIST: " + alDbulletin.get(i).getID());
+            System.out.println("Appreciation: " + alDbulletin.get(i).getAppreciation());
+            System.out.println("ID bulletin: " + alDbulletin.get(i).getBulletin());
+            System.out.println("ID enseignement: " + alDbulletin.get(i).getEnseignement());
+        }*/
+        
+        ArrayList<detailbulletin> RechercheDetailBulletin = detailBulletinDAO.rechercher("id_enseignement", 1);
+        /*for(int i = 0; i<RechercheDetailBulletin.size(); i++)
+        {
+            System.out.println("ID DETAIL BULLETIN RECHERCHE ==========================: " + RechercheDetailBulletin.get(i).getID());
+            System.out.println("Appreciation: " + RechercheDetailBulletin.get(i).getAppreciation());
+            System.out.println("ID bulletin: " + RechercheDetailBulletin.get(i).getBulletin());
+            System.out.println("ID enseignement: " + RechercheDetailBulletin.get(i).getEnseignement());
+        }*/
+        
         
         ///TEST DISCIPLINE -------------------------------------------------------------------------------------------
         
@@ -112,6 +180,22 @@ public class App {
         //delete
         //disciplineDAO.delete(didi);
         
+        //findALL
+        ArrayList<discipline> alDiscipline = disciplineDAO.findAll();
+        
+        /*for(int i =0; i<alDiscipline.size(); i++)
+        {
+            System.out.println("ID DISCIPLINE ARRAY LIST: " + alDiscipline.get(i).getID());
+            System.out.println("nom: " + alDiscipline.get(i).getNom());
+        }*/
+        
+        ArrayList<discipline> RechercheDiscipline = disciplineDAO.rechercher("nom", "art");
+        /*for(int i = 0; i<RechercheDiscipline.size(); i++)
+        {
+            System.out.println("ID DISCIPLINE RECHERCHE ==========================: " + RechercheDiscipline.get(i).getID());
+            System.out.println("nom: " + RechercheDiscipline.get(i).getNom());
+        }*/
+        
         ///TEST ECOLE -------------------------------------------------------------------------------------------
         
         DAO<ecole> ecoleDAO = adf.getEcoleDAO();
@@ -128,6 +212,24 @@ public class App {
         
         //delete
         //ecoleDAO.delete(eco);
+        
+         //findALL
+        ArrayList<ecole> alEcole = ecoleDAO.findAll();
+        
+        /*for(int i =0; i<alEcole.size(); i++)
+        {
+            System.out.println("ID ECOLE ARRAY LIST: " + alEcole.get(i).getID());
+            System.out.println("nom: " + alEcole.get(i).getNom());
+            System.out.println("nom: " + alEcole.get(i).getAdresse());
+        }*/
+        
+        ArrayList<ecole> RechercheEcole = ecoleDAO.rechercher("nom_ecole", "Lycee Richelieu");
+        /*for(int i = 0; i<RechercheEcole.size(); i++)
+        {
+            System.out.println("ID ECOLE RECHERCHE ====================================: " + RechercheEcole.get(i).getID());
+            System.out.println("nom: " + RechercheEcole.get(i).getNom());
+            System.out.println("nom: " + RechercheEcole.get(i).getAdresse());
+        }*/
         
         
         ///TEST ENSEIGNEMENT -------------------------------------------------------------------------------------------
@@ -147,6 +249,16 @@ public class App {
         //delete
         //enseignement.delete(ens);
         
+        ArrayList<enseignement> alEnseignement = enseignementDAO.findAll();
+        
+        /*for(int i =0; i<alEnseignement.size(); i++)
+        {
+            System.out.println("ID ENSEINGEMENT ARRAY LIST: " + alEnseignement.get(i).getID());
+            System.out.println("Classe: " + alEnseignement.get(i).getClasse());
+            System.out.println("Discipline: " + alEnseignement.get(i).getDiscipline());
+            System.out.println("Personne : " + alEnseignement.get(i).getPersonne());
+        }*/
+        
         ///TEST EVALUATION -------------------------------------------------------------------------------------------
         DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();
               
@@ -164,6 +276,16 @@ public class App {
         //delete
         //evaluationDAO.delete(ev);
         
+        ArrayList<evaluation> alEval = evaluationDAO.findAll();
+        
+        /*for(int i =0; i<alEval.size(); i++)
+        {
+            System.out.println("ID EVALUTION ARRAY LIST: " + alEval.get(i).getID());
+            System.out.println("Appreciation: " + alEval.get(i).getAppreciation());
+            System.out.println("Note: " + alEval.get(i).getNote());
+            System.out.println("DetailBulletin : " + alEval.get(i).getDetailBulletin());
+        }*/
+        
         ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
         DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
               
@@ -179,6 +301,112 @@ public class App {
         
         //delete
         //inscriptionDAO.delete(ins);
+        
+        ArrayList<inscription> alIns = inscriptionDAO.findAll();
+        
+        /*for(int i =0; i<alIns.size(); i++)
+        {
+            System.out.println("ID INSCRIPTION ARRAY LIST: " + alIns.get(i).getID());
+            System.out.println("classe: " + alIns.get(i).getClasse());
+            System.out.println("personne: " + alIns.get(i).getPersonne());
+        }*/
+        
+        
+        ///TEST NIVEAU -------------------------------------------------------------------------------------------
+        DAO<niveau> niveauDAO = adf.getNiveauDAO();
+              
+        //creation
+        niveau newNiv = new niveau(0,"CE1");
+        niveauDAO.create(newNiv);
+        
+        //find 
+        niveau niv = niveauDAO.find(2);
+        System.out.println("ID NIVEAU: " + niv.getID());
+        System.out.println("nom : " + niv.getNom());
+        
+        //delete
+        //niveauDAO.delete(niv);
+        
+        ArrayList<niveau> Alevel = niveauDAO.findAll();
+        
+        /*for(int i =0; i<Alevel.size(); i++)
+        {
+            System.out.println("ID NIVEAU ARRAY LIST: " + Alevel.get(i).getID());
+            System.out.println("nom: " + Alevel.get(i).getNom());
+        }*/
+        
+        ///TEST PERSONNE -------------------------------------------------------------------------------------------
+        DAO<personne> personneDAO = adf.getPersonneDAO();
+              
+        //creation
+        personne moi = new personne(0,"Helene", "Carlier-Gubler", "Prof", "LogNep", "coucou");
+        personneDAO.create(moi);
+        
+        //find 
+        personne toi = personneDAO.find(2);
+        System.out.println("ID PERSONNE: " + toi.getID());
+        System.out.println("nom : " + toi.getName());
+        System.out.println("prenom : " + toi.getFirstname());
+        System.out.println("type : " + toi.getType());
+        System.out.println("user : " + toi.getUser());
+        System.out.println("mdp : " + toi.getmdp());
+        
+        //delete
+        //personneDAO.delete(toi);
+        
+        ArrayList<personne> vous = personneDAO.findAll();
+        
+        /*for(int i =0; i<vous.size(); i++)
+        {
+            System.out.println("ID PERSONNE ARRAY LIST: " + vous.get(i).getID());
+            System.out.println("nom: " + vous.get(i).getName());
+            System.out.println("prenom: " + vous.get(i).getFirstname());
+            System.out.println("type: " + vous.get(i).getType());
+            System.out.println("user: " + vous.get(i).getUser());
+            System.out.println("mdp: " + vous.get(i).getmdp());
+        }*/
+        
+         ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
+        for(int i = 0; i<RechercheEcole.size(); i++)
+        {
+            System.out.println("ID PERSONNE RECHERCHE ===========================================: " + il.get(i).getID());
+            System.out.println("nom: " + il.get(i).getName());
+            System.out.println("prenom: " + il.get(i).getFirstname());
+            System.out.println("type: " + il.get(i).getType());
+            System.out.println("user: " + il.get(i).getUser());
+            System.out.println("mdp: " + il.get(i).getmdp());
+        }
+        
+        
+        
+        ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
+        DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
+              
+        //creation
+        trimestre Newtrim = new trimestre(0,3,"01/09/2018","31/06/2019", 0);
+        trimestreDAO.create(Newtrim);
+        
+        //find 
+        trimestre trim = trimestreDAO.find(1);
+        System.out.println("ID TRIMESTRE: " + trim.getID());
+        System.out.println("numero : " + trim.getNum());
+        System.out.println("debut : " + trim.getDebut());
+        System.out.println("fin : " + trim.getFin());
+        System.out.println("annee scolaire : " + trim.getAnneeScolaire());
+        
+        //delete
+        //personneDAO.delete(toi);
+        
+        ArrayList<trimestre> Alltrim = trimestreDAO.findAll();
+        
+        /*for(int i =0; i<Alltrim.size(); i++)
+        {
+            System.out.println("ID TRIMESTRE ARRAY LIST: " + Alltrim.get(i).getID());
+            System.out.println("numero: " + Alltrim.get(i).getNum());
+            System.out.println("debut: " + Alltrim.get(i).getDebut());
+            System.out.println("fin: " + Alltrim.get(i).getFin());
+            System.out.println("anneeScolaire: " + Alltrim.get(i).getAnneeScolaire());
+        }*/
         
         
         

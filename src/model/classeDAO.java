@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,5 +95,79 @@ public class classeDAO extends DAO<classe>{
     @Override
     public boolean update(classe obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<classe> findAll() {
+        ArrayList<classe> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        int id_ecole = 0;
+        int id_niveau = 0;
+        int id_anneeScolaire = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                nom = result.getString("nom");
+                id_ecole = result.getInt("id_ecole");
+                id_niveau = result.getInt("id_niveau");
+                id_anneeScolaire = result.getInt("id_anneeScolaire");
+                classe newBulletin = new classe(id, nom, id_ecole, id_niveau, id_anneeScolaire);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(classeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;
+    }
+
+    @Override
+    public ArrayList<classe> rechercher(String parametreTable, String parametre) {
+        classe b = new classe();
+        ArrayList<classe> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new classe(result.getInt("id"), result.getString("nom"), result.getInt("id_ecole"), result.getInt("id_niveau"), result.getInt("id_anneeScolaire")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<classe> rechercher(String parametreTable, int parametre) {
+        classe b = new classe();
+        ArrayList<classe> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new classe(result.getInt("id"), result.getString("nom"), result.getInt("id_ecole"), result.getInt("id_niveau"), result.getInt("id_anneeScolaire")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 }

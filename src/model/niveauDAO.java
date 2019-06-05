@@ -17,29 +17,28 @@ import java.util.logging.Logger;
  *
  * @author helen
  */
-public class inscriptionDAO extends DAO<inscription>{
+public class niveauDAO extends DAO<niveau>{
      private PreparedStatement findOne;
     private PreparedStatement findAll;
     private PreparedStatement create;
     
     
-    public inscriptionDAO(Connection conn) throws SQLException {
+    public niveauDAO(Connection conn) throws SQLException {
     super(conn);
 
         findOne = this.connect.prepareStatement("SELECT ");
-        findAll = this.connect.prepareStatement("SELECT * FROM inscription");
-        create = this.connect.prepareStatement("INSERT INTO inscription (id_classe, id_personne) VALUES (?, ?)");
+        findAll = this.connect.prepareStatement("SELECT * FROM niveau");
+        create = this.connect.prepareStatement("INSERT INTO niveau (nom) VALUES (?)");
     }
 
     @Override
     @SuppressWarnings("empty-statement")
-  public boolean create(inscription obj) {
+  public boolean create(niveau obj) {
      try{
-        create.setObject(1, obj.getClasse());
-        create.setObject(2, obj.getPersonne());
+        create.setObject(1, obj.getNom());
         
         create.executeUpdate();
-        System.out.println("COUCOU : inscription créé !!");
+        System.out.println("COUCOU : niveau créé !!");
       }
      catch(SQLException sql){
          sql.printStackTrace();
@@ -51,38 +50,37 @@ public class inscriptionDAO extends DAO<inscription>{
   }
 
     @Override
-  public boolean delete(inscription obj) {
+  public boolean delete(niveau obj) {
     try {
-            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM inscription WHERE id = " + obj.getID());         
+            PreparedStatement delete = this.connect.prepareStatement("DELETE FROM niveau WHERE id = " + obj.getID());         
             delete.executeUpdate();
-            System.out.println("inscription supprimée !");
+            System.out.println("niveau supprimée !");
         } catch (SQLException ex) {
-            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("inscription PAS supprimée ! ");
+            Logger.getLogger(niveauDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("niveau PAS supprimée ! ");
             return false;
         }
         return true;
   }
    
     @Override
-  public boolean update(inscription obj) {
+  public boolean update(niveau obj) {
     return false;
   }
 
     @Override
-    public inscription find(int id) {
-        inscription o = new inscription();
+    public niveau find(int id) {
+        niveau o = new niveau();
 
         try {
 
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM inscription WHERE id = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM niveau WHERE id = " + id);
             if(result.first())
-                o = new inscription(
+                o = new niveau(
                         id,
-                        result.getInt("id_classe"),
-                        result.getInt("id_personne")
+                        result.getString("nom")
                 );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,38 +89,36 @@ public class inscriptionDAO extends DAO<inscription>{
     }
 
     @Override
-    public ArrayList<inscription> findAll() {
-        ArrayList<inscription> maListe = new ArrayList<>();
+    public ArrayList<niveau> findAll() {
+        ArrayList<niveau> maListe = new ArrayList<>();
 
         int id = 0;
-        int id_classe = 0;
-        int id_personne = 0;
+        String nom = "";
         
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM inscription");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM niveau");
             while(result.next())
             {
                 id = result.getInt("id");
-                id_classe = result.getInt("id_classe");
-                id_personne = result.getInt("id_personne");
-                inscription newBulletin = new inscription(id, id_classe, id_personne);
+                nom = result.getString("nom");
+                niveau newBulletin = new niveau(id, nom);
                 maListe.add(newBulletin);
             }   
         } catch (SQLException ex) {
-            Logger.getLogger(inscriptionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(niveauDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return maListe; 
     }
 
     @Override
-    public ArrayList<inscription> rechercher(String parametreTable, String parametre) {
+    public ArrayList<niveau> rechercher(String parametreTable, String parametre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<inscription> rechercher(String parametreTable, int parametre) {
+    public ArrayList<niveau> rechercher(String parametreTable, int parametre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

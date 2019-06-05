@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,6 +89,74 @@ public class disciplineDAO extends DAO<discipline>{
     @Override
     public boolean update(discipline obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<discipline> findAll() {
+       ArrayList<discipline> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM discipline");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                nom = result.getString("nom");
+                discipline newBulletin = new discipline(id, nom);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(disciplineDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;  
+    }
+
+    @Override
+    public ArrayList<discipline> rechercher(String parametreTable, String parametre) {
+        discipline b = new discipline();
+        ArrayList<discipline> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM discipline WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new discipline(result.getInt("id"), result.getString("nom")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<discipline> rechercher(String parametreTable, int parametre) {
+        discipline b = new discipline();
+        ArrayList<discipline> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM discipline WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new discipline(result.getInt("id"), result.getString("nom")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 
 }

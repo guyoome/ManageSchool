@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,5 +93,77 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
     @Override
     public boolean update(detailbulletin obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<detailbulletin> findAll() {
+       ArrayList<detailbulletin> maListe = new ArrayList<>();
+
+        int id = 0;
+        String appreciation = "";
+        int id_bulletin = 0;
+        int id_enseignement = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM detailbulletin");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                appreciation = result.getString("appreciation");
+                id_bulletin = result.getInt("id_bulletin");
+                id_enseignement = result.getInt("id_enseignement");
+                detailbulletin newBulletin = new detailbulletin(id, appreciation, id_bulletin, id_enseignement);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(detailbulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
+    }
+
+    @Override
+    public ArrayList<detailbulletin> rechercher(String parametreTable, String parametre) {
+        detailbulletin b = new detailbulletin();
+        ArrayList<detailbulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM detailbulletin WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new detailbulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_bulletin"), result.getInt("id_enseignement")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<detailbulletin> rechercher(String parametreTable, int parametre) {
+        detailbulletin b = new detailbulletin();
+        ArrayList<detailbulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM detailbulletin WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new detailbulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_bulletin"), result.getInt("id_enseignement")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 }
