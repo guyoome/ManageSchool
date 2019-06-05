@@ -107,46 +107,12 @@ public class anneescolaireDAO extends DAO<anneescolaire>{
 
     @Override
     public ArrayList<anneescolaire> rechercher(String parametreTable, String parametre) {
-        anneescolaire b = new anneescolaire();
-        ArrayList<anneescolaire> bb = new ArrayList<>();
-    
-    try {
-      
-      ResultSet result = this.connect.createStatement(
-        ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM anneescolaire WHERE " + parametreTable + " = " + parametre);
-      
-        while(result.next())
-        {    
-            b = new anneescolaire(result.getInt("id")); 
-            bb.add(b);
-        }
-        } catch (SQLException e) {
-         e.printStackTrace();
-        }
-        return bb;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public ArrayList<anneescolaire> rechercher(String parametreTable, int parametre) {
-        anneescolaire b = new anneescolaire();
-        ArrayList<anneescolaire> bb = new ArrayList<>();
-    
-    try {
-      
-      ResultSet result = this.connect.createStatement(
-        ResultSet.TYPE_SCROLL_INSENSITIVE,
-        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM anneescolaire WHERE " + parametreTable + " = " + parametre);
-      
-        while(result.next())
-        {    
-            b = new anneescolaire(result.getInt("id")); 
-            bb.add(b);
-        }
-        } catch (SQLException e) {
-         e.printStackTrace();
-        }
-        return bb;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

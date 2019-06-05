@@ -53,14 +53,14 @@ public class App {
             System.out.println("ID trimestre: " + alBulletin.get(i).getIDtrimestre());
         }*/
         
-        ArrayList<bulletin> RechercheBulletin = bulletinDAO.rechercher("appreciation", "Felicitatio");
-        for(int i = 0; i<RechercheBulletin.size(); i++)
+        ArrayList<bulletin> RechercheBulletin = bulletinDAO.rechercher("appreciation", "Felicitation");
+        /*for(int i = 0; i<RechercheBulletin.size(); i++)
         {
             System.out.println("ID BULLETIN RECHERCHE ==================================: " + RechercheBulletin.get(i).getID());
             System.out.println("Appreciation: " + RechercheBulletin.get(i).getAppreciation());
             System.out.println("ID inscription: " + RechercheBulletin.get(i).getIDinscription());
             System.out.println("ID trimestre: " + RechercheBulletin.get(i).getIDtrimestre());
-        }
+        }*/
         
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
@@ -115,6 +115,16 @@ public class App {
             System.out.println("ID niveau " + alClasse.get(i).getNiveau());
         }*/
         
+        ArrayList<classe> RechercheClasse = classeDAO.rechercher("nom", "CE1a");
+        /*for(int i = 0; i<RechercheClasse.size(); i++)
+        {
+            System.out.println("ID BULLETIN RECHERCHE ====================================: " + RechercheClasse.get(i).getID());
+            System.out.println("Appreciation: " + RechercheClasse.get(i).getNom());
+            System.out.println("ID annee scolaire: " + RechercheClasse.get(i).getAnneeScolaire());
+            System.out.println("ID ecole: " + RechercheClasse.get(i).getEcole());
+            System.out.println("ID niveau " + RechercheClasse.get(i).getNiveau());
+        }*/
+        
         ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
         DAO<detailbulletin> detailBulletinDAO = adf.getDetailBulletinDAO();
@@ -144,6 +154,15 @@ public class App {
             System.out.println("ID enseignement: " + alDbulletin.get(i).getEnseignement());
         }*/
         
+        ArrayList<detailbulletin> RechercheDetailBulletin = detailBulletinDAO.rechercher("id_enseignement", 1);
+        /*for(int i = 0; i<RechercheDetailBulletin.size(); i++)
+        {
+            System.out.println("ID DETAIL BULLETIN RECHERCHE ==========================: " + RechercheDetailBulletin.get(i).getID());
+            System.out.println("Appreciation: " + RechercheDetailBulletin.get(i).getAppreciation());
+            System.out.println("ID bulletin: " + RechercheDetailBulletin.get(i).getBulletin());
+            System.out.println("ID enseignement: " + RechercheDetailBulletin.get(i).getEnseignement());
+        }*/
+        
         
         ///TEST DISCIPLINE -------------------------------------------------------------------------------------------
         
@@ -168,6 +187,13 @@ public class App {
         {
             System.out.println("ID DISCIPLINE ARRAY LIST: " + alDiscipline.get(i).getID());
             System.out.println("nom: " + alDiscipline.get(i).getNom());
+        }*/
+        
+        ArrayList<discipline> RechercheDiscipline = disciplineDAO.rechercher("nom", "art");
+        /*for(int i = 0; i<RechercheDiscipline.size(); i++)
+        {
+            System.out.println("ID DISCIPLINE RECHERCHE ==========================: " + RechercheDiscipline.get(i).getID());
+            System.out.println("nom: " + RechercheDiscipline.get(i).getNom());
         }*/
         
         ///TEST ECOLE -------------------------------------------------------------------------------------------
@@ -195,6 +221,14 @@ public class App {
             System.out.println("ID ECOLE ARRAY LIST: " + alEcole.get(i).getID());
             System.out.println("nom: " + alEcole.get(i).getNom());
             System.out.println("nom: " + alEcole.get(i).getAdresse());
+        }*/
+        
+        ArrayList<ecole> RechercheEcole = ecoleDAO.rechercher("nom_ecole", "Lycee Richelieu");
+        /*for(int i = 0; i<RechercheEcole.size(); i++)
+        {
+            System.out.println("ID ECOLE RECHERCHE ====================================: " + RechercheEcole.get(i).getID());
+            System.out.println("nom: " + RechercheEcole.get(i).getNom());
+            System.out.println("nom: " + RechercheEcole.get(i).getAdresse());
         }*/
         
         
@@ -331,6 +365,17 @@ public class App {
             System.out.println("user: " + vous.get(i).getUser());
             System.out.println("mdp: " + vous.get(i).getmdp());
         }*/
+        
+         ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
+        for(int i = 0; i<RechercheEcole.size(); i++)
+        {
+            System.out.println("ID PERSONNE RECHERCHE ===========================================: " + il.get(i).getID());
+            System.out.println("nom: " + il.get(i).getName());
+            System.out.println("prenom: " + il.get(i).getFirstname());
+            System.out.println("type: " + il.get(i).getType());
+            System.out.println("user: " + il.get(i).getUser());
+            System.out.println("mdp: " + il.get(i).getmdp());
+        }
         
         
         
