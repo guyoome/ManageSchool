@@ -27,7 +27,7 @@ public class trimestreDAO extends DAO<trimestre>{
 
         findOne = this.connect.prepareStatement("SELECT ");
         findAll = this.connect.prepareStatement("SELECT * FROM trimestre");
-        create = this.connect.prepareStatement("INSERT INTO trimestre (numero, debut, fin, id_anneScolaire) VALUES (?, ?, ?, ?)");
+        create = this.connect.prepareStatement("INSERT INTO trimestre (numero, debut, fin, id_anneeScolaire) VALUES (?, ?, ?, ?)");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class trimestreDAO extends DAO<trimestre>{
 
     @Override
     public trimestre find(int id) {
-        personne o = new personne();
+        trimestre o = new trimestre();
 
         try {
 
@@ -83,8 +83,8 @@ public class trimestreDAO extends DAO<trimestre>{
                 o = new trimestre(
                         id,
                         result.getInt("numero"),
-                        result.getDate("debut"),
-                        result.getDate("fin"),
+                        result.getString("debut"),
+                        result.getString("fin"),
                         result.getInt("id_anneeScolaire")
                 );
         } catch (SQLException e) {

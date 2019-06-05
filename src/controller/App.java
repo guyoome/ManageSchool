@@ -216,23 +216,22 @@ public class App {
         //personneDAO.delete(toi);
         
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
-        /*DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
+        DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
               
         //creation
-        trimestre Newtrim = new trimestre(0,3,, SystemClockFactory.getDatetime();, 0);
+        trimestre Newtrim = new trimestre(0,3,"01/09/2018","31/06/2019", 0);
         trimestreDAO.create(Newtrim);
         
         //find 
-        personne toi = personneDAO.find(2);
-        System.out.println("ID PERSONNE: " + toi.getID());
-        System.out.println("nom : " + toi.getName());
-        System.out.println("prenom : " + toi.getFirstname());
-        System.out.println("type : " + toi.getType());
-        System.out.println("user : " + toi.getUser());
-        System.out.println("mdp : " + toi.getmdp());
+        trimestre trim = trimestreDAO.find(1);
+        System.out.println("ID TRIMESTRE: " + trim.getID());
+        System.out.println("numero : " + trim.getNum());
+        System.out.println("debut : " + trim.getDebut());
+        System.out.println("fin : " + trim.getFin());
+        System.out.println("annee scolaire : " + trim.getAnneeScolaire());
         
         //delete
-        //personneDAO.delete(toi);*/
+        //personneDAO.delete(toi);
         
         
         
