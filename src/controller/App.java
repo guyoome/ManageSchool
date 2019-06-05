@@ -96,15 +96,16 @@ public class App {
         //delete
         //classeDAO.delete(clacla);
         
+        //findALL
         ArrayList<classe> alClasse = classeDAO.findAll();
-        for(int i =0; i<alClasse.size(); i++)
+        /*for(int i =0; i<alClasse.size(); i++)
         {
             System.out.println("ID BULLETIN ARRAY LIST: " + alClasse.get(i).getID());
             System.out.println("Appreciation: " + alClasse.get(i).getNom());
             System.out.println("ID annee scolaire: " + alClasse.get(i).getAnneeScolaire());
             System.out.println("ID ecole: " + alClasse.get(i).getEcole());
             System.out.println("ID niveau " + alClasse.get(i).getNiveau());
-        }
+        }*/
         
         ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
@@ -123,6 +124,17 @@ public class App {
         
         //delete
         //detailBulletinDAO.delete(dbubu);
+        
+        //findALL
+        ArrayList<detailbulletin> alDbulletin = detailBulletinDAO.findAll();
+        
+        for(int i =0; i<alDbulletin.size(); i++)
+        {
+            System.out.println("ID DETAIL BULLETIN ARRAY LIST: " + alDbulletin.get(i).getID());
+            System.out.println("Appreciation: " + alDbulletin.get(i).getAppreciation());
+            System.out.println("ID bulletin: " + alDbulletin.get(i).getBulletin());
+            System.out.println("ID enseignement: " + alDbulletin.get(i).getEnseignement());
+        }
         
         
         ///TEST DISCIPLINE -------------------------------------------------------------------------------------------

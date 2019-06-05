@@ -97,6 +97,29 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
 
     @Override
     public ArrayList<detailbulletin> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       ArrayList<detailbulletin> maListe = new ArrayList<>();
+
+        int id = 0;
+        String appreciation = "";
+        int id_bulletin = 0;
+        int id_enseignement = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM detailbulletin");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                appreciation = result.getString("appreciation");
+                id_bulletin = result.getInt("id_bulletin");
+                id_enseignement = result.getInt("id_enseignement");
+                detailbulletin newBulletin = new detailbulletin(id, appreciation, id_bulletin, id_enseignement);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(detailbulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
 }
