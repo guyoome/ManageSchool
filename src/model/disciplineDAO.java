@@ -93,7 +93,26 @@ public class disciplineDAO extends DAO<discipline>{
 
     @Override
     public ArrayList<discipline> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       ArrayList<discipline> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM discipline");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                nom = result.getString("nom");
+                discipline newBulletin = new discipline(id, nom);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(disciplineDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;  
     }
 
 }
