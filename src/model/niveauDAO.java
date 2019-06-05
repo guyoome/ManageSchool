@@ -90,7 +90,26 @@ public class niveauDAO extends DAO<niveau>{
 
     @Override
     public ArrayList<niveau> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<niveau> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM niveau");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                nom = result.getString("nom");
+                niveau newBulletin = new niveau(id, nom);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(niveauDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }

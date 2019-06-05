@@ -209,13 +209,13 @@ public class App {
         
         ArrayList<enseignement> alEnseignement = enseignementDAO.findAll();
         
-        for(int i =0; i<alEnseignement.size(); i++)
+        /*for(int i =0; i<alEnseignement.size(); i++)
         {
             System.out.println("ID ENSEINGEMENT ARRAY LIST: " + alEnseignement.get(i).getID());
             System.out.println("Classe: " + alEnseignement.get(i).getClasse());
             System.out.println("Discipline: " + alEnseignement.get(i).getDiscipline());
             System.out.println("Personne : " + alEnseignement.get(i).getPersonne());
-        }
+        }*/
         
         ///TEST EVALUATION -------------------------------------------------------------------------------------------
         DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();
@@ -234,6 +234,16 @@ public class App {
         //delete
         //evaluationDAO.delete(ev);
         
+        ArrayList<evaluation> alEval = evaluationDAO.findAll();
+        
+        /*for(int i =0; i<alEval.size(); i++)
+        {
+            System.out.println("ID EVALUTION ARRAY LIST: " + alEval.get(i).getID());
+            System.out.println("Appreciation: " + alEval.get(i).getAppreciation());
+            System.out.println("Note: " + alEval.get(i).getNote());
+            System.out.println("DetailBulletin : " + alEval.get(i).getDetailBulletin());
+        }*/
+        
         ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
         DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
               
@@ -250,6 +260,16 @@ public class App {
         //delete
         //inscriptionDAO.delete(ins);
         
+        ArrayList<inscription> alIns = inscriptionDAO.findAll();
+        
+        /*for(int i =0; i<alIns.size(); i++)
+        {
+            System.out.println("ID INSCRIPTION ARRAY LIST: " + alIns.get(i).getID());
+            System.out.println("classe: " + alIns.get(i).getClasse());
+            System.out.println("personne: " + alIns.get(i).getPersonne());
+        }*/
+        
+        
         ///TEST NIVEAU -------------------------------------------------------------------------------------------
         DAO<niveau> niveauDAO = adf.getNiveauDAO();
               
@@ -264,6 +284,14 @@ public class App {
         
         //delete
         //niveauDAO.delete(niv);
+        
+        ArrayList<niveau> Alevel = niveauDAO.findAll();
+        
+        /*for(int i =0; i<Alevel.size(); i++)
+        {
+            System.out.println("ID NIVEAU ARRAY LIST: " + Alevel.get(i).getID());
+            System.out.println("nom: " + Alevel.get(i).getNom());
+        }*/
         
         ///TEST PERSONNE -------------------------------------------------------------------------------------------
         DAO<personne> personneDAO = adf.getPersonneDAO();
@@ -284,6 +312,18 @@ public class App {
         //delete
         //personneDAO.delete(toi);
         
+        ArrayList<personne> vous = personneDAO.findAll();
+        
+        /*for(int i =0; i<vous.size(); i++)
+        {
+            System.out.println("ID PERSONNE ARRAY LIST: " + vous.get(i).getID());
+            System.out.println("nom: " + vous.get(i).getName());
+            System.out.println("prenom: " + vous.get(i).getFirstname());
+            System.out.println("type: " + vous.get(i).getType());
+            System.out.println("user: " + vous.get(i).getUser());
+            System.out.println("mdp: " + vous.get(i).getmdp());
+        }*/
+        
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
         DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
               
@@ -301,6 +341,18 @@ public class App {
         
         //delete
         //personneDAO.delete(toi);
+        
+        ArrayList<trimestre> Alltrim = trimestreDAO.findAll();
+        
+        /*for(int i =0; i<Alltrim.size(); i++)
+        {
+            System.out.println("ID TRIMESTRE ARRAY LIST: " + Alltrim.get(i).getID());
+            System.out.println("numero: " + Alltrim.get(i).getNum());
+            System.out.println("debut: " + Alltrim.get(i).getDebut());
+            System.out.println("fin: " + Alltrim.get(i).getFin());
+            System.out.println("anneeScolaire: " + Alltrim.get(i).getAnneeScolaire());
+        }*/
+        
         
         
         

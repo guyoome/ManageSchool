@@ -98,7 +98,34 @@ public class personneDAO extends DAO<personne>{
 
     @Override
     public ArrayList<personne> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<personne> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        String prenom = "";
+        String type_ = "";
+        String userP = "";
+        String mdp = "";
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM personne");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                nom = result.getString("nom");
+                prenom = result.getString("prenom");
+                type_ = result.getString("type_");
+                userP = result.getString("userP");
+                mdp = result.getString("mdp");
+                personne newBulletin = new personne(id, nom,prenom,type_,userP,mdp);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(personneDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }

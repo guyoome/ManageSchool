@@ -94,7 +94,30 @@ public class evaluationDAO extends DAO<evaluation>{
 
     @Override
     public ArrayList<evaluation> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<evaluation> maListe = new ArrayList<>();
+
+        int id = 0;
+        String appreciation = "";
+        int note = 0;
+        int id_detail_bulletin = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM evaluation");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                appreciation = result.getString("appreciation");
+                note = result.getInt("note");
+                id_detail_bulletin = result.getInt("id_detail_bulletin");
+                evaluation newBulletin = new evaluation(id, appreciation, note, id_detail_bulletin);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(evaluationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }

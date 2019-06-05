@@ -92,7 +92,28 @@ public class inscriptionDAO extends DAO<inscription>{
 
     @Override
     public ArrayList<inscription> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<inscription> maListe = new ArrayList<>();
+
+        int id = 0;
+        int id_classe = 0;
+        int id_personne = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM inscription");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                id_classe = result.getInt("id_classe");
+                id_personne = result.getInt("id_personne");
+                inscription newBulletin = new inscription(id, id_classe, id_personne);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(inscriptionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }

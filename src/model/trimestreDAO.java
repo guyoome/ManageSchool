@@ -96,7 +96,32 @@ public class trimestreDAO extends DAO<trimestre>{
 
     @Override
     public ArrayList<trimestre> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<trimestre> maListe = new ArrayList<>();
+
+        int id = 0;
+        int numero = 0;
+        String debut = "";
+        String fin = "";
+        int id_anneeScolaire = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM trimestre");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                numero = result.getInt("numero");
+                debut = result.getString("debut");
+                fin = result.getString("fin");
+                id_anneeScolaire = result.getInt("id_anneeScolaire");
+                trimestre newBulletin = new trimestre(id, numero,debut,fin,id_anneeScolaire);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(trimestreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }
