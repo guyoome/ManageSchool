@@ -6,6 +6,7 @@
 package model;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -56,5 +57,13 @@ public abstract class DAO<T> {
   * @return T
   */
   public abstract T find(int id);
+
+
+
+    /**
+  * Méthode de recherche des informations
+     * @return ArrayList<T>
+  */
+  public abstract ArrayList<T> findAll();
 
 }

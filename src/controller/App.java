@@ -2,6 +2,7 @@ package controller;
 
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 import model.DAO;
@@ -43,6 +44,7 @@ public class App {
         
         //bulletinDAO.delete(bubu);
         
+        
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
         ///PB ca n'increment pas tout seul et ca s'est embetant ... A rectifier
@@ -57,6 +59,13 @@ public class App {
         
         
         //anneescolaireDAO.delete(anan);
+        
+        //find all
+        ArrayList<anneescolaire> aScolaire = anneescolaireDAO.findAll();
+        for(int i =0; i<aScolaire.size(); i++)
+        {
+            System.out.println("ID ANNEE SCOLAIRE ARRAY LIST: " + aScolaire.get(i).getID());
+        }
         
         
         ///TEST CLASSE -------------------------------------------------------------------------------------------

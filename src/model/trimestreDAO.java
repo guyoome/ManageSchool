@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,9 +18,9 @@ import java.util.logging.Logger;
  * @author helen
  */
 public class trimestreDAO extends DAO<trimestre>{
-     private PreparedStatement findOne;
-    private PreparedStatement findAll;
-    private PreparedStatement create;
+     private final PreparedStatement findOne;
+    private final PreparedStatement findAll;
+    private final PreparedStatement create;
     
     
     public trimestreDAO(Connection conn) throws SQLException {
@@ -91,6 +92,11 @@ public class trimestreDAO extends DAO<trimestre>{
             e.printStackTrace();
         }
         return o;
+    }
+
+    @Override
+    public ArrayList<trimestre> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
