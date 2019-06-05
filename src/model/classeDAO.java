@@ -99,6 +99,31 @@ public class classeDAO extends DAO<classe>{
 
     @Override
     public ArrayList<classe> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<classe> maListe = new ArrayList<>();
+
+        int id = 0;
+        String nom = "";
+        int id_ecole = 0;
+        int id_niveau = 0;
+        int id_anneeScolaire = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                nom = result.getString("nom");
+                id_ecole = result.getInt("id_ecole");
+                id_niveau = result.getInt("id_niveau");
+                id_anneeScolaire = result.getInt("id_anneeScolaire");
+                classe newBulletin = new classe(id, nom, id_ecole, id_niveau, id_anneeScolaire);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(classeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;
     }
 }

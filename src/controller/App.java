@@ -96,6 +96,16 @@ public class App {
         //delete
         //classeDAO.delete(clacla);
         
+        ArrayList<classe> alClasse = classeDAO.findAll();
+        for(int i =0; i<alClasse.size(); i++)
+        {
+            System.out.println("ID BULLETIN ARRAY LIST: " + alClasse.get(i).getID());
+            System.out.println("Appreciation: " + alClasse.get(i).getNom());
+            System.out.println("ID annee scolaire: " + alClasse.get(i).getAnneeScolaire());
+            System.out.println("ID ecole: " + alClasse.get(i).getEcole());
+            System.out.println("ID niveau " + alClasse.get(i).getNiveau());
+        }
+        
         ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
         DAO<detailbulletin> detailBulletinDAO = adf.getDetailBulletinDAO();
