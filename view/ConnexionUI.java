@@ -119,7 +119,26 @@ public class ConnexionUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        //verifier connexion
+       
+        dispose();
+        java.awt.EventQueue.invokeLater(() -> {
+            TESTfen dialog = new TESTfen(new javax.swing.JFrame(), true);
+            
+            
+            
+            
+            
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
+        });
+    
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -150,10 +169,8 @@ public class ConnexionUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConnexionUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ConnexionUI().setVisible(true);
         });
     }
 
