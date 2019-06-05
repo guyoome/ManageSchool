@@ -118,12 +118,46 @@ public class inscriptionDAO extends DAO<inscription>{
 
     @Override
     public ArrayList<inscription> rechercher(String parametreTable, String parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        inscription b = new inscription();
+        ArrayList<inscription> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM inscription WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new inscription(result.getInt("id"), result.getInt("id_classe"),result.getInt("id_personne")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 
     @Override
     public ArrayList<inscription> rechercher(String parametreTable, int parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        inscription b = new inscription();
+        ArrayList<inscription> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM inscription WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new inscription(result.getInt("id"), result.getInt("id_classe"),result.getInt("id_personne")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
     
 }

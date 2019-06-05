@@ -122,12 +122,46 @@ public class evaluationDAO extends DAO<evaluation>{
 
     @Override
     public ArrayList<evaluation> rechercher(String parametreTable, String parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        evaluation b = new evaluation();
+        ArrayList<evaluation> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM evaluation WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new evaluation(result.getInt("id"), result.getString("appreciation"),result.getInt("note"),result.getInt("id_detail_bulletin")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 
     @Override
     public ArrayList<evaluation> rechercher(String parametreTable, int parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        evaluation b = new evaluation();
+        ArrayList<evaluation> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM evaluation WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new evaluation(result.getInt("id"), result.getString("appreciation"),result.getInt("note"),result.getInt("id_detail_bulletin")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
     
 }

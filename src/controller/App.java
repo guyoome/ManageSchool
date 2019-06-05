@@ -286,6 +286,17 @@ public class App {
             System.out.println("DetailBulletin : " + alEval.get(i).getDetailBulletin());
         }*/
         
+        ArrayList<evaluation> RechercheEval = evaluationDAO.rechercher("note", 17);
+        /*
+        for(int i = 0; i<RechercheEval.size(); i++)
+        {
+            System.out.println("ID EVALUTION RECHERCHE =====================================: " + RechercheEval.get(i).getID());
+            System.out.println("Appreciation: " + RechercheEval.get(i).getAppreciation());
+            System.out.println("Note: " + RechercheEval.get(i).getNote());
+            System.out.println("DetailBulletin : " + RechercheEval.get(i).getDetailBulletin());
+        }
+        */
+        
         ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
         DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
               
@@ -311,6 +322,14 @@ public class App {
             System.out.println("personne: " + alIns.get(i).getPersonne());
         }*/
         
+        ArrayList<inscription> RechercheInscription = inscriptionDAO.rechercher("id_personne", 4);
+        /*for(int i = 0; i<RechercheInscription.size(); i++)
+        {
+            System.out.println("ID INSCRIPTION RECHERCHE =================================: " + RechercheInscription.get(i).getID());
+            System.out.println("classe: " + RechercheInscription.get(i).getClasse());
+            System.out.println("personne: " + RechercheInscription.get(i).getPersonne());
+        }*/
+        
         
         ///TEST NIVEAU -------------------------------------------------------------------------------------------
         DAO<niveau> niveauDAO = adf.getNiveauDAO();
@@ -333,6 +352,13 @@ public class App {
         {
             System.out.println("ID NIVEAU ARRAY LIST: " + Alevel.get(i).getID());
             System.out.println("nom: " + Alevel.get(i).getNom());
+        }*/
+        
+        ArrayList<niveau> RechercheLevel = niveauDAO.rechercher("nom", "CP");
+        /*for(int i = 0; i<RechercheLevel.size(); i++)
+        {
+            System.out.println("ID NIVEAU RECHERCHE ===================================: " + RechercheLevel.get(i).getID());
+            System.out.println("nom: " + RechercheLevel.get(i).getNom());
         }*/
         
         ///TEST PERSONNE -------------------------------------------------------------------------------------------
@@ -366,7 +392,8 @@ public class App {
             System.out.println("mdp: " + vous.get(i).getmdp());
         }*/
         
-         ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
+        ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
+       /*
         for(int i = 0; i<RechercheEcole.size(); i++)
         {
             System.out.println("ID PERSONNE RECHERCHE ===========================================: " + il.get(i).getID());
@@ -376,7 +403,7 @@ public class App {
             System.out.println("user: " + il.get(i).getUser());
             System.out.println("mdp: " + il.get(i).getmdp());
         }
-        
+        */
         
         
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
@@ -408,7 +435,15 @@ public class App {
             System.out.println("anneeScolaire: " + Alltrim.get(i).getAnneeScolaire());
         }*/
         
-        
+        ArrayList<trimestre> RechercheTrim = trimestreDAO.rechercher("debut", "01/09/2018");
+        for(int i = 0; i<RechercheTrim.size(); i++)
+        {
+            System.out.println("ID TRIMESTRE RECHERCHE ====================================: " + RechercheTrim.get(i).getID());
+            System.out.println("numero: " + RechercheTrim.get(i).getNum());
+            System.out.println("debut: " + RechercheTrim.get(i).getDebut());
+            System.out.println("fin: " + RechercheTrim.get(i).getFin());
+            System.out.println("anneeScolaire: " + RechercheTrim.get(i).getAnneeScolaire());
+        }
         
         
          /*       

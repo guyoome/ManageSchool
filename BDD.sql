@@ -11,8 +11,8 @@ id int(11) NOT NULL PRIMARY KEY
 CREATE TABLE Trimestre(
 id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 numero int(11) NOT NULL,
-debut int(11) NOT NULL,
-fin int(11) NOT NULL,
+debut varchar(255) NOT NULL,
+fin varchar(255) NOT NULL,
 id_anneeScolaire int(11) NOT NULL,
 FOREIGN KEY (id_anneeScolaire) REFERENCES AnneeScolaire(id)
 );

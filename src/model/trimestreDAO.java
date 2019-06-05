@@ -126,12 +126,46 @@ public class trimestreDAO extends DAO<trimestre>{
 
     @Override
     public ArrayList<trimestre> rechercher(String parametreTable, String parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        trimestre b = new trimestre();
+        ArrayList<trimestre> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM trimestre WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new trimestre(result.getInt("id"), result.getInt("numero"), result.getString("debut"), result.getString("fin"), result.getInt("id_anneeScolaire")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
 
     @Override
     public ArrayList<trimestre> rechercher(String parametreTable, int parametre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        trimestre b = new trimestre();
+        ArrayList<trimestre> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM trimestre WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new trimestre(result.getInt("id"), result.getInt("numero"), result.getString("debut"), result.getString("fin"), result.getInt("id_anneeScolaire")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
     }
     
 }
