@@ -67,7 +67,6 @@ public class App {
         classeDAO.create(newClass);
         
         //find
-        classe clacla = classeDAO.find(2);
         System.out.println("ID CLASSE: " + clacla.getID());
         System.out.println("Nom : " + clacla.getNom());
         System.out.println("ID annee scolaire : " + clacla.getAnneeScolaire());
@@ -86,7 +85,6 @@ public class App {
         detailBulletinDAO.create(newDbubu);
         
         //find
-        detailbulletin dbubu = detailBulletinDAO.find(3);
         System.out.println("ID DETAIL BULLETIN: " + dbubu.getID());
         System.out.println("Appreciation : " + dbubu.getAppreciation());
         System.out.println("ID bulletin : " + dbubu.getBulletin());
@@ -121,7 +119,6 @@ public class App {
         ecoleDAO.create(newecole);
         
         //find
-        ecole eco = ecoleDAO.find(2);
         System.out.println("ID ECOLE: " + eco.getID());
         System.out.println("Nom : " + eco.getNom());
         System.out.println("Adresse : " + eco.getAdresse());
