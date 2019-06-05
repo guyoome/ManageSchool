@@ -105,7 +105,30 @@ public class bulletinDAO extends DAO<bulletin>{
 
     @Override
     public ArrayList<bulletin> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<bulletin> maListe = new ArrayList<>();
+
+        int id = 0;
+        String appreciation = "";
+        int id_trimestre = 0;
+        int id_inscription = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin");
+            while(result.next())
+            {
+                id = result.getInt("ID");
+                appreciation = result.getString("appreciation");
+                id_trimestre = result.getInt("id_trimestre");
+                id_inscription = result.getInt("id_inscription");
+                bulletin newBulletin = new bulletin(id, appreciation, id_trimestre, id_inscription);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(bulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe;
     }
     
     

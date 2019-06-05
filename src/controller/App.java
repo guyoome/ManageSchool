@@ -3,7 +3,6 @@ package controller;
 
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 import model.DAO;
 import model.bulletin;
@@ -43,6 +42,16 @@ public class App {
         
         
         //bulletinDAO.delete(bubu);
+        
+        //find all
+        ArrayList<bulletin> alBulletin = bulletinDAO.findAll();
+        /*for(int i =0; i<alBulletin.size(); i++)
+        {
+            System.out.println("ID BULLETIN ARRAY LIST: " + alBulletin.get(i).getID());
+            System.out.println("Appreciation: " + alBulletin.get(i).getAppreciation());
+            System.out.println("ID inscription: " + alBulletin.get(i).getIDinscription());
+            System.out.println("ID trimestre: " + alBulletin.get(i).getIDtrimestre());
+        }*/
         
         
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
