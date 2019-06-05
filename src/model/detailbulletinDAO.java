@@ -122,4 +122,14 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
         }
         return maListe; 
     }
+
+    @Override
+    public ArrayList<detailbulletin> rechercher(String parametreTable, String parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<detailbulletin> rechercher(String parametreTable, int parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

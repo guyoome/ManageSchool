@@ -126,4 +126,14 @@ public class classeDAO extends DAO<classe>{
         }
         return maListe;
     }
+
+    @Override
+    public ArrayList<classe> rechercher(String parametreTable, String parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<classe> rechercher(String parametreTable, int parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

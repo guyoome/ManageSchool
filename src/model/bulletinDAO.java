@@ -130,6 +130,50 @@ public class bulletinDAO extends DAO<bulletin>{
         }
         return maListe;
     }
+
+    @Override
+    public ArrayList<bulletin> rechercher(String parametreTable, String parametre) {
+        bulletin b = new bulletin();
+        ArrayList<bulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin WHERE " + parametreTable + " LIKE " + "'" + parametre + "'");
+      
+        while(result.next())
+        {    
+            b = new bulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_trimestre"), result.getInt("id_inscription")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
+
+    @Override
+    public ArrayList<bulletin> rechercher(String parametreTable, int parametre) {
+        bulletin b = new bulletin();
+        ArrayList<bulletin> bb = new ArrayList<>();
+    
+    try {
+      
+      ResultSet result = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE,
+        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM bulletin WHERE " + parametreTable + " = " + parametre);
+      
+        while(result.next())
+        {    
+            b = new bulletin(result.getInt("id"), result.getString("appreciation"), result.getInt("id_trimestre"), result.getInt("id_inscription")); 
+            bb.add(b);
+        }
+        } catch (SQLException e) {
+         e.printStackTrace();
+        }
+        return bb;
+    }
     
     
     

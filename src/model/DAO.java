@@ -62,8 +62,24 @@ public abstract class DAO<T> {
 
     /**
   * Méthode de recherche des informations
-     * @return ArrayList<T>
+     * @return ArrayList<T> une arrayList contenant l'ensemble des informations de la table du type T
   */
   public abstract ArrayList<T> findAll();
+  
+  /**
+  * Méthode de recherche des informations
+     * @param parametreTable le nom dans la table
+     * @param parametre le nom du paramètre contenu dans la table
+     * @return ArrayList<T> les objets trouvés
+  */
+  public abstract ArrayList<T> rechercher(String parametreTable, String parametre);
+  
+  /**
+  * Méthode de recherche des informations
+     * @param parametreTable le nom dans la table
+     * @param parametre le nom du paramètre contenu dans la table
+     * @return ArrayList<T> les objets trouvés
+  */
+  public abstract ArrayList<T> rechercher(String parametreTable, int parametre);
 
 }

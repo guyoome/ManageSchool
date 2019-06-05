@@ -53,6 +53,14 @@ public class App {
             System.out.println("ID trimestre: " + alBulletin.get(i).getIDtrimestre());
         }*/
         
+        ArrayList<bulletin> RechercheBulletin = bulletinDAO.rechercher("appreciation", "Felicitatio");
+        for(int i = 0; i<RechercheBulletin.size(); i++)
+        {
+            System.out.println("ID BULLETIN RECHERCHE ==================================: " + RechercheBulletin.get(i).getID());
+            System.out.println("Appreciation: " + RechercheBulletin.get(i).getAppreciation());
+            System.out.println("ID inscription: " + RechercheBulletin.get(i).getIDinscription());
+            System.out.println("ID trimestre: " + RechercheBulletin.get(i).getIDtrimestre());
+        }
         
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
@@ -323,6 +331,8 @@ public class App {
             System.out.println("user: " + vous.get(i).getUser());
             System.out.println("mdp: " + vous.get(i).getmdp());
         }*/
+        
+        
         
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
         DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();

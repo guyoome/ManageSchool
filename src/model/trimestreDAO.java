@@ -123,5 +123,15 @@ public class trimestreDAO extends DAO<trimestre>{
         }
         return maListe; 
     }
+
+    @Override
+    public ArrayList<trimestre> rechercher(String parametreTable, String parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<trimestre> rechercher(String parametreTable, int parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

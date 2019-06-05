@@ -115,4 +115,14 @@ public class disciplineDAO extends DAO<discipline>{
         return maListe;  
     }
 
+    @Override
+    public ArrayList<discipline> rechercher(String parametreTable, String parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<discipline> rechercher(String parametreTable, int parametre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
