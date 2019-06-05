@@ -179,6 +179,16 @@ public class App {
         //delete
         //ecoleDAO.delete(eco);
         
+         //findALL
+        ArrayList<ecole> alEcole = ecoleDAO.findAll();
+        
+        /*for(int i =0; i<alEcole.size(); i++)
+        {
+            System.out.println("ID ECOLE ARRAY LIST: " + alEcole.get(i).getID());
+            System.out.println("nom: " + alEcole.get(i).getNom());
+            System.out.println("nom: " + alEcole.get(i).getAdresse());
+        }*/
+        
         
         ///TEST ENSEIGNEMENT -------------------------------------------------------------------------------------------
         DAO<enseignement> enseignementDAO = adf.getEnseignementDAO();
@@ -196,6 +206,16 @@ public class App {
         
         //delete
         //enseignement.delete(ens);
+        
+        ArrayList<enseignement> alEnseignement = enseignementDAO.findAll();
+        
+        for(int i =0; i<alEnseignement.size(); i++)
+        {
+            System.out.println("ID ENSEINGEMENT ARRAY LIST: " + alEnseignement.get(i).getID());
+            System.out.println("Classe: " + alEnseignement.get(i).getClasse());
+            System.out.println("Discipline: " + alEnseignement.get(i).getDiscipline());
+            System.out.println("Personne : " + alEnseignement.get(i).getPersonne());
+        }
         
         ///TEST EVALUATION -------------------------------------------------------------------------------------------
         DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();

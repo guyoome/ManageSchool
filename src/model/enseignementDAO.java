@@ -94,7 +94,30 @@ public class enseignementDAO extends DAO<enseignement>{
 
     @Override
     public ArrayList<enseignement> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       ArrayList<enseignement> maListe = new ArrayList<>();
+
+        int id = 0;
+        int id_classe = 0;
+        int id_discipline = 0;
+        int id_personne = 0;
+        
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM enseignement");
+            while(result.next())
+            {
+                id = result.getInt("id");
+                id_classe = result.getInt("id_classe");
+                id_discipline = result.getInt("id_discipline");
+                id_personne = result.getInt("id_personne");
+                enseignement newBulletin = new enseignement(id, id_classe, id_discipline, id_personne);
+                maListe.add(newBulletin);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(enseignementDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maListe; 
     }
     
 }
