@@ -67,7 +67,46 @@ public class enseignementDAO extends DAO<enseignement>{
    
     @Override
   public boolean update(enseignement obj) {
-    return false;
+    String update = "UPDATE enseignement SET ";
+      boolean succeed = false;
+      
+        if(-1 == obj.getDiscipline() ){
+        } 
+        else {
+            update += "id_discipline= "+"'" +obj.getDiscipline()+"'" ;
+            succeed = true;
+            if(-1 != obj.getClasse() || -1 != obj.getPersonne())
+            {
+                update += " , ";     
+            }
+        }
+        if(-1 != obj.getClasse()){
+            update += "id_classe = '" + obj.getClasse() + "'"; 
+            succeed = true;
+            if(-1 != obj.getPersonne())
+            {
+                update += " , ";     
+            }
+        }
+        if(-1 != obj.getPersonne()){
+            update += "id_personne = '" + obj.getPersonne() + "'"; 
+            succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("enseignement modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(enseignementDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
   }
 
     @Override

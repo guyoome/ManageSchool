@@ -63,7 +63,38 @@ public class ecoleDAO extends DAO<ecole> {
 
     @Override
     public boolean update(ecole obj) {
-        return false;
+        String update = "UPDATE ecole SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getNom())){
+        } 
+        else {
+            update += "nom_ecole= "+"'" +obj.getNom()+"'" ;
+            succeed = true;
+            if(!("".equals(obj.getAdresse())))
+            {
+                update += " , ";     
+            }
+        }
+        if(!("".equals(obj.getAdresse()))){
+            update += "adresse = '" + obj.getAdresse() + "'"; 
+            succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id_ecole = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("ecole modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(detailbulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
     }
 
     @Override

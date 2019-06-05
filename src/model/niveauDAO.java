@@ -65,7 +65,31 @@ public class niveauDAO extends DAO<niveau>{
    
     @Override
   public boolean update(niveau obj) {
-    return false;
+    String update = "UPDATE niveau SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getNom())){
+        } 
+        else {
+            update += "nom = "+"'" +obj.getNom()+"'" ;
+            succeed = true;
+            
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("niveau modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(niveauDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
   }
 
     @Override

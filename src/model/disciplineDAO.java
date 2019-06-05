@@ -88,7 +88,30 @@ public class disciplineDAO extends DAO<discipline>{
 
     @Override
     public boolean update(discipline obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String update = "UPDATE discipline SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getNom())){
+        } 
+        else {
+            update += "nom= "+"'" +obj.getNom()+"'" ;
+            succeed = true;
+        }
+                
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("discipline modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(disciplineDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
     }
 
     @Override

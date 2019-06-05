@@ -82,11 +82,10 @@ public class App {
         
         //find all
         ArrayList<anneescolaire> aScolaire = anneescolaireDAO.findAll();
-        for(int i =0; i<aScolaire.size(); i++)
+        /*for(int i =0; i<aScolaire.size(); i++)
         {
             System.out.println("ID ANNEE SCOLAIRE ARRAY LIST: " + aScolaire.get(i).getID());
-        }
-        
+        }*/
         
         ///TEST CLASSE -------------------------------------------------------------------------------------------
         
@@ -111,8 +110,8 @@ public class App {
         ArrayList<classe> alClasse = classeDAO.findAll();
         /*for(int i =0; i<alClasse.size(); i++)
         {
-            System.out.println("ID BULLETIN ARRAY LIST: " + alClasse.get(i).getID());
-            System.out.println("Appreciation: " + alClasse.get(i).getNom());
+            System.out.println("ID CLASSE ARRAY LIST: " + alClasse.get(i).getID());
+            System.out.println("Nom: " + alClasse.get(i).getNom());
             System.out.println("ID annee scolaire: " + alClasse.get(i).getAnneeScolaire());
             System.out.println("ID ecole: " + alClasse.get(i).getEcole());
             System.out.println("ID niveau " + alClasse.get(i).getNiveau());
@@ -121,12 +120,15 @@ public class App {
         ArrayList<classe> RechercheClasse = classeDAO.rechercher("nom", "CE1a");
         /*for(int i = 0; i<RechercheClasse.size(); i++)
         {
-            System.out.println("ID BULLETIN RECHERCHE ====================================: " + RechercheClasse.get(i).getID());
-            System.out.println("Appreciation: " + RechercheClasse.get(i).getNom());
+            System.out.println("ID CLASSE RECHERCHE ====================================: " + RechercheClasse.get(i).getID());
+            System.out.println("Nom: " + RechercheClasse.get(i).getNom());
             System.out.println("ID annee scolaire: " + RechercheClasse.get(i).getAnneeScolaire());
             System.out.println("ID ecole: " + RechercheClasse.get(i).getEcole());
             System.out.println("ID niveau " + RechercheClasse.get(i).getNiveau());
         }*/
+        
+        classe newClasse = new classe(8, "CM2b", 2,1,1);
+        classeDAO.update(newClasse);
         
         ///TEST DETAIL BULLETIN -------------------------------------------------------------------------------------------
         
@@ -166,6 +168,9 @@ public class App {
             System.out.println("ID enseignement: " + RechercheDetailBulletin.get(i).getEnseignement());
         }*/
         
+        detailbulletin newDbulletin = new detailbulletin(49,"Il faut encore poussser les efforts", 1, 3);
+        detailBulletinDAO.update(newDbulletin);
+        
         
         ///TEST DISCIPLINE -------------------------------------------------------------------------------------------
         
@@ -198,6 +203,9 @@ public class App {
             System.out.println("ID DISCIPLINE RECHERCHE ==========================: " + RechercheDiscipline.get(i).getID());
             System.out.println("nom: " + RechercheDiscipline.get(i).getNom());
         }*/
+        
+        discipline newDi = new discipline(57,"littérature");
+        disciplineDAO.update(newDi);
         
         ///TEST ECOLE -------------------------------------------------------------------------------------------
         
@@ -234,6 +242,9 @@ public class App {
             System.out.println("nom: " + RechercheEcole.get(i).getAdresse());
         }*/
         
+        ecole newEc = new ecole(47,"Tuck Stell", "Rueil Malmaison");
+        ecoleDAO.update(newEc);
+        
         
         ///TEST ENSEIGNEMENT -------------------------------------------------------------------------------------------
         DAO<enseignement> enseignementDAO = adf.getEnseignementDAO();
@@ -261,6 +272,9 @@ public class App {
             System.out.println("Discipline: " + alEnseignement.get(i).getDiscipline());
             System.out.println("Personne : " + alEnseignement.get(i).getPersonne());
         }*/
+        
+        enseignement newEnse = new enseignement(2,1,1,1);
+        enseignementDAO.update(newEnse);
         
         ///TEST EVALUATION -------------------------------------------------------------------------------------------
         DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();
@@ -300,6 +314,9 @@ public class App {
         }
         */
         
+        evaluation NewEva = new evaluation(6,"TB", 5,2);
+        evaluationDAO.update(NewEva);
+        
         ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
         DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
               
@@ -333,6 +350,9 @@ public class App {
             System.out.println("personne: " + RechercheInscription.get(i).getPersonne());
         }*/
         
+        inscription newInscri = new inscription(5,2,2);
+        inscriptionDAO.update(newInscri);
+        
         
         ///TEST NIVEAU -------------------------------------------------------------------------------------------
         DAO<niveau> niveauDAO = adf.getNiveauDAO();
@@ -363,6 +383,9 @@ public class App {
             System.out.println("ID NIVEAU RECHERCHE ===================================: " + RechercheLevel.get(i).getID());
             System.out.println("nom: " + RechercheLevel.get(i).getNom());
         }*/
+        
+        niveau newLevel = new niveau(4, "CE2");
+        niveauDAO.update(newLevel);
         
         ///TEST PERSONNE -------------------------------------------------------------------------------------------
         DAO<personne> personneDAO = adf.getPersonneDAO();
@@ -407,6 +430,9 @@ public class App {
             System.out.println("mdp: " + il.get(i).getmdp());
         }
         */
+       
+       personne elle = new personne(2,"Clara", "Sabatey", "Eleve", "Clacla", "love");
+       personneDAO.update(elle);
         
         
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
@@ -447,6 +473,9 @@ public class App {
             System.out.println("fin: " + RechercheTrim.get(i).getFin());
             System.out.println("anneeScolaire: " + RechercheTrim.get(i).getAnneeScolaire());
         }*/
+        
+        trimestre newTrime = new trimestre(2,1,"02/09/2017","15/06/2018",2);
+        trimestreDAO.update(newTrime);
         
         
          /*       

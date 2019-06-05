@@ -67,7 +67,46 @@ public class evaluationDAO extends DAO<evaluation>{
    
     @Override
   public boolean update(evaluation obj) {
-    return false;
+    String update = "UPDATE evaluation SET ";
+      boolean succeed = false;
+      
+        if( "".equals(obj.getAppreciation() )){
+        } 
+        else {
+            update += "appreciation = "+"'" +obj.getAppreciation()+"'" ;
+            succeed = true;
+            if(-1 != obj.getNote() || -1 != obj.getDetailBulletin())
+            {
+                update += " , ";     
+            }
+        }
+        if(-1 != obj.getNote()){
+            update += "note = '" + obj.getNote() + "'"; 
+            succeed = true;
+            if(-1 != obj.getDetailBulletin())
+            {
+                update += " , ";     
+            }
+        }
+        if(-1 != obj.getDetailBulletin()){
+            update += "id_detail_bulletin = '" + obj.getDetailBulletin() + "'"; 
+            succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("detail bulletin modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(evaluationDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
   }
 
     @Override

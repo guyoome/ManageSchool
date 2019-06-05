@@ -94,7 +94,57 @@ public class classeDAO extends DAO<classe>{
 
     @Override
     public boolean update(classe obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String update = "UPDATE classe SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getNom())){
+        } 
+        else {
+            update += "nom= "+"'" +obj.getNom()+"'" ;
+            succeed = true;
+            if(-1 != obj.getEcole()||
+                    -1 != obj.getNiveau() ||
+                    -1 != obj.getAnneeScolaire())
+            {
+                update += " , ";     
+            }
+        }
+        if( -1 != obj.getEcole() ){
+            update += "id_ecole = '" + obj.getEcole() + "'"; 
+            succeed = true;
+            if(-1 != obj.getNiveau() ||
+                    -1 != obj.getAnneeScolaire())
+            {
+                 update += " , ";     
+            }
+        }
+        if( -1 != obj.getNiveau() ){
+            update += "id_niveau = '" + obj.getNiveau() + "'"; 
+            succeed = true;
+            if(-1 != obj.getAnneeScolaire())
+            {
+                 update += " , ";     
+            }
+        }
+        if( -1 != obj.getAnneeScolaire() ){
+           update += "id_anneeScolaire = '" + obj.getAnneeScolaire()+ "'";  
+           succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("classe modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(classeDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
     }
 
     @Override

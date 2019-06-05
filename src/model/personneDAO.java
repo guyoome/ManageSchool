@@ -69,7 +69,68 @@ public class personneDAO extends DAO<personne>{
    
     @Override
   public boolean update(personne obj) {
-    return false;
+    String update = "UPDATE personne SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getName())){
+        } 
+        else {
+            update += "nom= "+"'" +obj.getName()+"'" ;
+            succeed = true;
+            if(!("".equals(obj.getFirstname())) ||
+                 !("".equals(obj.getType())) ||
+                 !("".equals(obj.getUser())) ||
+                 !("".equals(obj.getmdp())))
+            {
+                update += " , ";     
+            }
+        }
+        if(!("".equals(obj.getFirstname()))){
+            update += "prenom= "+"'" +obj.getFirstname()+"'" ;
+            succeed = true;
+            if(!("".equals(obj.getType())) ||
+                 !("".equals(obj.getUser())) ||
+                 !("".equals(obj.getmdp())))
+            {
+                update += " , ";     
+            }
+        }
+        if(!("".equals(obj.getType()))){
+            update += "type_= "+"'" +obj.getType()+"'" ;
+            succeed = true;
+            if(!("".equals(obj.getUser())) ||
+                 !("".equals(obj.getmdp())))
+            {
+                update += " , ";     
+            }
+        }
+        if(!("".equals(obj.getUser()))){
+            update += "userP= "+"'" +obj.getUser()+"'" ;
+            succeed = true;
+            if(!("".equals(obj.getmdp())))
+            {
+                update += " , ";     
+            }
+        }
+        if(!("".equals(obj.getmdp()))){
+            update += "mdp= "+"'" +obj.getmdp()+"'" ;
+            succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("personne modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(detailbulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
   }
 
     @Override

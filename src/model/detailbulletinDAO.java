@@ -92,8 +92,49 @@ public class detailbulletinDAO extends DAO<detailbulletin>{
 
     @Override
     public boolean update(detailbulletin obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String update = "UPDATE detailbulletin SET ";
+      boolean succeed = false;
+      
+        if("".equals(obj.getAppreciation())){
+        } 
+        else {
+            update += "appreciation= "+"'" +obj.getAppreciation()+"'" ;
+            succeed = true;
+            if(-1 != obj.getBulletin()||
+                    -1 != obj.getEnseignement())
+            {
+                update += " , ";     
+            }
+        }
+        if( -1 != obj.getBulletin() ){
+            update += "id_bulletin = '" + obj.getBulletin() + "'"; 
+            succeed = true;
+            if(-1 != obj.getEnseignement())
+            {
+                 update += " , ";     
+            }
+        }
+        if( -1 != obj.getEnseignement() ){
+           update += "id_enseignement = '" + obj.getEnseignement()+ "'";  
+           succeed = true;
+        }
+        
+        //s'il y a quelque chose à changer
+        if(succeed == true)
+        {
+            update += " WHERE id = " + obj.getID();
+            try {
+                PreparedStatement updateStm = this.connect.prepareStatement(update);         
+                updateStm.executeUpdate();
+                System.out.println("detailBulletin modifié !");
+            } catch (SQLException ex) {
+                Logger.getLogger(detailbulletinDAO.class.getName()).log(Level.SEVERE, null, ex);
+                succeed = false;
+            }  
+        } 
+    return succeed;
     }
+    
 
     @Override
     public ArrayList<detailbulletin> findAll() {
