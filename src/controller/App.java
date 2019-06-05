@@ -2,6 +2,7 @@ package controller;
 
 
 
+import java.util.Calendar;
 import java.util.Scanner;
 import model.DAO;
 import model.bulletin;
@@ -180,6 +181,58 @@ public class App {
         //delete
         //inscriptionDAO.delete(ins);
         
+        ///TEST NIVEAU -------------------------------------------------------------------------------------------
+        DAO<niveau> niveauDAO = adf.getNiveauDAO();
+              
+        //creation
+        niveau newNiv = new niveau(0,"CE1");
+        niveauDAO.create(newNiv);
+        
+        //find 
+        niveau niv = niveauDAO.find(2);
+        System.out.println("ID NIVEAU: " + niv.getID());
+        System.out.println("nom : " + niv.getNom());
+        
+        //delete
+        //niveauDAO.delete(niv);
+        
+        ///TEST PERSONNE -------------------------------------------------------------------------------------------
+        DAO<personne> personneDAO = adf.getPersonneDAO();
+              
+        //creation
+        personne moi = new personne(0,"Helene", "Carlier-Gubler", "Prof", "LogNep", "coucou");
+        personneDAO.create(moi);
+        
+        //find 
+        personne toi = personneDAO.find(2);
+        System.out.println("ID PERSONNE: " + toi.getID());
+        System.out.println("nom : " + toi.getName());
+        System.out.println("prenom : " + toi.getFirstname());
+        System.out.println("type : " + toi.getType());
+        System.out.println("user : " + toi.getUser());
+        System.out.println("mdp : " + toi.getmdp());
+        
+        //delete
+        //personneDAO.delete(toi);
+        
+        ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
+        /*DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
+              
+        //creation
+        trimestre Newtrim = new trimestre(0,3,, SystemClockFactory.getDatetime();, 0);
+        trimestreDAO.create(Newtrim);
+        
+        //find 
+        personne toi = personneDAO.find(2);
+        System.out.println("ID PERSONNE: " + toi.getID());
+        System.out.println("nom : " + toi.getName());
+        System.out.println("prenom : " + toi.getFirstname());
+        System.out.println("type : " + toi.getType());
+        System.out.println("user : " + toi.getUser());
+        System.out.println("mdp : " + toi.getmdp());
+        
+        //delete
+        //personneDAO.delete(toi);*/
         
         
         

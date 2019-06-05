@@ -1,6 +1,6 @@
 package model;
 
-public abstract class personne {
+public class personne {
     protected int id = 0;
     protected String nom = "";
     protected String prenom = "";
@@ -22,10 +22,10 @@ public abstract class personne {
 
     public String getName() {return nom;}
     public String getFirstname() {return prenom;}
-    public int getId() {return id;}
+    public int getID() {return id;}
     public String getType(){return type_;}
     public String getUser(){return userP;}
-    public String mdp(){return mdp;}
+    public String getmdp(){return mdp;}
     
     public void setName(String name) {this.nom = name;}
     public void setFirstname(String firstname) {this.prenom = firstname;}

@@ -143,5 +143,35 @@ public class DAOFactory extends AbstractDAOFactory{
       }
       return null;
   }
+  
+  @Override
+  public DAO getNiveauDAO(){
+      try {
+          return new niveauDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+  
+  @Override
+  public DAO getPersonneDAO(){
+      try {
+          return new personneDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
+  
+  @Override
+  public DAO getTrimestreDAO(){
+      try {
+          return new trimestreDAO(conn);
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return null;
+  }
 
 }

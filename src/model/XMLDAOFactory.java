@@ -56,4 +56,19 @@ public class XMLDAOFactory extends AbstractDAOFactory {
     public DAO getInscriptionDAO() {
         return null;
     }
+    
+    @Override
+    public DAO getNiveauDAO() {
+        return null;
+    }
+    
+    @Override
+    public DAO getPersonneDAO() {
+        return null;
+    }
+    
+    @Override
+    public DAO getTrimestreDAO() {
+        return null;
+    }
 }
