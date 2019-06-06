@@ -42,7 +42,9 @@ CREATE TABLE Personne(
 id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 nom varchar(255) NOT NULL ,
 prenom varchar(255) NOT NULL ,
-type_ varchar(255) NOT NULL
+type_ varchar(255) NOT NULL,
+userP varchar(255),
+mdp varchar(255)
 );
 
 CREATE TABLE Enseignement(
