@@ -7,6 +7,8 @@ import java.util.Scanner;
 import model.DAO;
 import model.bulletin;
 import model.*;
+import view.Fen;
+import view.TESTfen;
 
 public class App {
     //private People session = null;//variable de session
@@ -418,7 +420,7 @@ public class App {
             System.out.println("mdp: " + vous.get(i).getmdp());
         }*/
         
-        ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
+       // ArrayList<personne> il = personneDAO.rechercher("userP", "LogNep");
        /*
         for(int i = 0; i<RechercheEcole.size(); i++)
         {
@@ -488,6 +490,30 @@ public class App {
         mdp = sc.nextLine();
         connection(user, mdp);
         */
-        
+
+        //find
+        ArrayList<personne> allPeople = personneDAO.findAll();
+        allPeople.get(0).getType();
+
+        ArrayList<classe> ao = classeDAO.findAll();
+
+        //RUN
+        Fen dialog = new Fen();
+
+        dialog.refreshTabClasse(ao);
+        dialog.refreshTabEleve(allPeople);
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                TESTfen dialog = new TESTfen(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });*/
+
     }
 }
