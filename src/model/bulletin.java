@@ -15,16 +15,18 @@ public class bulletin {
     private String appreciation= "";
     private int id_trimestre = 0;
     private int id_inscription = 0;
+    private int id_eleve =0;
     
     ///constructors
     public bulletin(){}
     
-    public bulletin(int id, String app, int idT, int idI)
+    public bulletin(int id, String app, int idT, int idI,int eleve)
     {
         this.id = id;
         appreciation = app;
         id_trimestre = idT;
         id_inscription = idI;
+        this.id_eleve=eleve;
     }
     
     
@@ -48,6 +50,7 @@ public class bulletin {
     {
         id_inscription = id;
     }
+
     
     ///getters
     public int getID()
@@ -68,5 +71,9 @@ public class bulletin {
     public int getIDinscription()
     {
         return id_inscription;
+    }
+
+    public int getId_eleve() {
+        return id_eleve;
     }
 }

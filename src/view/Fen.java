@@ -139,13 +139,20 @@ public class Fen {
 
     public void refreshTabEleve(int indice) {
         AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
-        DAO<personne> personneDAO = adf.getPersonneDAO();
-        personne ao = personneDAO.find(indice);
-        String[] titles = {"id", "nom", "prenom"};
-        Object[][] to = new Object[1][3];
-        to[0][0] = ao.getID();
-        to[0][1] = ao.getName();
-        to[0][2] = ao.getFirstname();
+        DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
+        ArrayList<bulletin> ao = bulletinDAO.findAll();
+        ArrayList<bulletin> ao2 = new ArrayList<>();
+        for (int i = 0; i < ao.size(); i++) {
+            if (ao.get(i).getId_eleve() == indice) {
+                ao2.add(ao.get(i));
+            }
+        }
+        String[] titles = {"id", "appreciation"};
+        Object[][] to = new Object[ao2.size()][2];
+        for (int i = 0; i < ao2.size(); i++) {
+            to[i][0] = ao2.get(i).getID();
+            to[i][1] = ao2.get(i).getAppreciation();
+        }
         tableStudent.setModel(new DefaultTableModel(to, titles));
     }
 

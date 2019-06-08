@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 08 juin 2019 à 17:18
+-- Généré le :  sam. 08 juin 2019 à 17:54
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `bulletin` (
   `appreciation` varchar(255) NOT NULL,
   `id_trimestre` int(11) NOT NULL,
   `id_inscription` int(11) NOT NULL,
+  `id_eleve` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_trimestre` (`id_trimestre`),
   KEY `id_inscription` (`id_inscription`)
@@ -55,66 +56,66 @@ CREATE TABLE IF NOT EXISTS `bulletin` (
 -- Déchargement des données de la table `bulletin`
 --
 
-INSERT INTO `bulletin` (`id`, `appreciation`, `id_trimestre`, `id_inscription`) VALUES
-(1, 'AB', 0, 0),
-(2, 'AB', 0, 0),
-(3, 'AB', 0, 0),
-(4, 'AB', 0, 0),
-(5, 'AB', 0, 1),
-(6, 'AB', 0, 0),
-(7, 'AB', 0, 0),
-(8, 'AB', 0, 0),
-(9, 'AB', 0, 0),
-(10, 'AB', 0, 0),
-(11, 'AB', 0, 0),
-(12, 'AB', 0, 0),
-(13, 'AB', 0, 0),
-(14, 'AB', 0, 0),
-(15, 'AB', 0, 0),
-(16, 'AB', 0, 0),
-(17, 'AB', 0, 0),
-(18, 'AB', 0, 0),
-(19, 'AB', 0, 0),
-(20, 'AB', 0, 0),
-(21, 'AB', 0, 0),
-(22, 'AB', 0, 0),
-(23, 'AB', 0, 0),
-(24, 'AB', 0, 0),
-(25, 'AB', 0, 0),
-(26, 'AB', 0, 0),
-(27, 'AB', 0, 0),
-(28, 'AB', 0, 0),
-(29, 'AB', 0, 0),
-(30, 'AB', 0, 0),
-(31, 'AB', 0, 0),
-(32, 'AB', 0, 0),
-(33, 'AB', 0, 0),
-(34, 'AB', 0, 0),
-(35, 'AB', 0, 0),
-(36, 'AB', 0, 0),
-(37, 'AB', 0, 0),
-(38, 'AB', 0, 0),
-(39, 'AB', 0, 0),
-(40, 'AB', 0, 0),
-(41, 'AB', 0, 0),
-(42, 'AB', 0, 0),
-(43, 'AB', 0, 0),
-(44, 'AB', 0, 0),
-(45, 'AB', 0, 0),
-(46, 'AB', 0, 0),
-(47, 'AB', 0, 0),
-(48, 'AB', 0, 0),
-(49, 'AB', 0, 0),
-(50, 'AB', 0, 0),
-(51, 'AB', 0, 0),
-(52, 'AB', 0, 0),
-(53, 'AB', 0, 0),
-(54, 'AB', 0, 0),
-(55, 'AB', 0, 0),
-(56, 'AB', 0, 0),
-(57, 'AB', 0, 0),
-(58, 'AB', 0, 0),
-(59, 'AB', 0, 0);
+INSERT INTO `bulletin` (`id`, `appreciation`, `id_trimestre`, `id_inscription`, `id_eleve`) VALUES
+(1, 'AB', 0, 0, 1),
+(2, 'AB', 0, 0, 2),
+(3, 'AB', 0, 0, 3),
+(4, 'AB', 0, 0, 1),
+(5, 'AB', 0, 1, 2),
+(6, 'AB', 0, 0, 3),
+(7, 'AB', 0, 0, 1),
+(8, 'AB', 0, 0, 2),
+(9, 'AB', 0, 0, 3),
+(10, 'AB', 0, 0, 1),
+(11, 'AB', 0, 0, 2),
+(12, 'AB', 0, 0, 3),
+(13, 'AB', 0, 0, 1),
+(14, 'AB', 0, 0, 2),
+(15, 'AB', 0, 0, 3),
+(16, 'AB', 0, 0, 1),
+(17, 'AB', 0, 0, 2),
+(18, 'AB', 0, 0, 3),
+(19, 'AB', 0, 0, 1),
+(20, 'AB', 0, 0, 2),
+(21, 'AB', 0, 0, 3),
+(22, 'AB', 0, 0, 1),
+(23, 'AB', 0, 0, 2),
+(24, 'AB', 0, 0, 3),
+(25, 'AB', 0, 0, 1),
+(26, 'AB', 0, 0, NULL),
+(27, 'AB', 0, 0, NULL),
+(28, 'AB', 0, 0, NULL),
+(29, 'AB', 0, 0, NULL),
+(30, 'AB', 0, 0, NULL),
+(31, 'AB', 0, 0, NULL),
+(32, 'AB', 0, 0, NULL),
+(33, 'AB', 0, 0, NULL),
+(34, 'AB', 0, 0, NULL),
+(35, 'AB', 0, 0, NULL),
+(36, 'AB', 0, 0, NULL),
+(37, 'AB', 0, 0, NULL),
+(38, 'AB', 0, 0, NULL),
+(39, 'AB', 0, 0, NULL),
+(40, 'AB', 0, 0, NULL),
+(41, 'AB', 0, 0, NULL),
+(42, 'AB', 0, 0, NULL),
+(43, 'AB', 0, 0, NULL),
+(44, 'AB', 0, 0, NULL),
+(45, 'AB', 0, 0, NULL),
+(46, 'AB', 0, 0, NULL),
+(47, 'AB', 0, 0, NULL),
+(48, 'AB', 0, 0, NULL),
+(49, 'AB', 0, 0, NULL),
+(50, 'AB', 0, 0, NULL),
+(51, 'AB', 0, 0, NULL),
+(52, 'AB', 0, 0, NULL),
+(53, 'AB', 0, 0, NULL),
+(54, 'AB', 0, 0, NULL),
+(55, 'AB', 0, 0, NULL),
+(56, 'AB', 0, 0, NULL),
+(57, 'AB', 0, 0, NULL),
+(58, 'AB', 0, 0, NULL),
+(59, 'AB', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `detailbulletin` (
   PRIMARY KEY (`id`),
   KEY `id_bulletin` (`id_bulletin`),
   KEY `id_enseignement` (`id_enseignement`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `detailbulletin`
@@ -242,7 +243,9 @@ INSERT INTO `detailbulletin` (`id`, `appreciation`, `id_bulletin`, `id_enseignem
 (73, 'Bon travail', 0, 0),
 (74, 'Bon travail', 0, 0),
 (75, 'Bon travail', 0, 0),
-(76, 'Bon travail', 0, 0);
+(76, 'Bon travail', 0, 0),
+(77, 'Bon travail', 0, 0),
+(78, 'Bon travail', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -255,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `discipline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `discipline`
@@ -337,7 +340,9 @@ INSERT INTO `discipline` (`id`, `nom`) VALUES
 (73, 'art'),
 (74, 'art'),
 (75, 'art'),
-(76, 'art');
+(76, 'art'),
+(77, 'art'),
+(78, 'art');
 
 -- --------------------------------------------------------
 
@@ -434,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `enseignement` (
   KEY `id_classe` (`id_classe`),
   KEY `id_discipline` (`id_discipline`),
   KEY `id_personne` (`id_personne`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `enseignement`
@@ -516,7 +521,9 @@ INSERT INTO `enseignement` (`id`, `id_classe`, `id_discipline`, `id_personne`) V
 (73, 0, 0, 0),
 (74, 0, 0, 0),
 (75, 0, 0, 0),
-(76, 0, 0, 0);
+(76, 0, 0, 0),
+(77, 0, 0, 0),
+(78, 0, 0, 0);
 
 -- --------------------------------------------------------
 
