@@ -1,13 +1,14 @@
 package view;
 
 
-import model.classe;
-import model.personne;
+import model.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Fen {
@@ -17,6 +18,8 @@ public class Fen {
     private JTable table1;
     private JTable tableClasse;
     private JTable tableStudent;
+    private JButton eleveButton;
+    private JButton voirClasseButton;
 
 
     public Fen() {//Object[][] content, String[] titles) {
@@ -28,6 +31,36 @@ public class Fen {
         $$$setupUI$$$();
         init();
         //tableClasse.setModel(new JTable(content, titles).getModel());
+        voirClasseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (voirClasseButton.getLabel().equals("Retour")) {
+                    voirClasseButton.setLabel("Voir Classe");
+                    refreshTabClasse();
+                } else {
+                    String[] titles = {"nom", "prenom"};
+                    int indice = tableClasse.getSelectedRow();
+                    if (indice != -1) {
+                        voirClasseButton.setLabel("Retour");
+                        refreshTabClasse((Integer) tableClasse.getValueAt(indice, 0), titles);
+                    }
+                }
+            }
+        });
+        eleveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (eleveButton.getLabel().equals("Retour")) {
+                    eleveButton.setLabel("Voir Eleve");
+                    refreshTabEleve();
+                } else {
+                    eleveButton.setLabel("Retour");
+                    int indice = tableStudent.getSelectedRow();
+                    System.out.println("id eleve :" + (Integer) tableClasse.getValueAt(indice, 0));
+                    refreshTabEleve((Integer) tableStudent.getValueAt(indice, 0));
+                }
+            }
+        });
     }
 
     public static void setBestLookAndFeelAvailable() {
@@ -45,6 +78,50 @@ public class Fen {
         }
     }
 
+
+    public void refreshTabClasse(int id_classe, String[] titles) {
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        DAO<personne> personneDAO = adf.getPersonneDAO();
+        ArrayList<personne> ao = personneDAO.findAll();
+        ArrayList<personne> ao2 = new ArrayList<>();
+
+        for (int i = 0; i < ao.size(); i++) {
+            if (ao.get(i).getType().equals("stud") || ao.get(i).getType().equals("Eleve")) {
+                if (ao.get(i).getId_classe() == id_classe) {
+                    ao2.add(ao.get(i));
+                }
+            }
+        }
+
+        Object[][] to = new Object[ao2.size()][2];
+        for (int i = 0; i < ao2.size(); i++) {
+            System.out.println(ao2.get(i).getType());
+            to[i][0] = ao2.get(i).getName();
+            to[i][1] = ao2.get(i).getFirstname();
+            System.out.println(to[i][0]);
+            System.out.println(to[i][1]);
+        }
+        tableClasse.setModel(new DefaultTableModel(to, titles));
+    }
+
+    public void refreshTabClasse() {
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        DAO<classe> classeDAO = adf.getClasseDAO();
+        ArrayList<classe> ao = classeDAO.findAll();
+        String[] titles = {"id", "nom", "école", "niveau", "annee scolaire"};
+        Object[][] to = new Object[ao.size()][5];
+        for (int i = 0; i < ao.size(); i++) {
+            to[i][0] = ao.get(i).getID();
+            to[i][1] = ao.get(i).getNom();
+            to[i][2] = ao.get(i).getEcole();
+            to[i][3] = ao.get(i).getNiveau();
+            to[i][4] = ao.get(i).getAnneeScolaire();
+            System.out.println(to[i][0]);
+            System.out.println(to[i][1]);
+        }
+        tableClasse.setModel(new DefaultTableModel(to, titles));
+    }
+
     public void refreshTabClasse(@NotNull ArrayList<classe> ao) {
         String[] titles = {"id", "nom", "école", "niveau", "annee scolaire"};
         Object[][] to = new Object[ao.size()][5];
@@ -60,6 +137,39 @@ public class Fen {
         tableClasse.setModel(new DefaultTableModel(to, titles));
     }
 
+    public void refreshTabEleve(int indice) {
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        DAO<personne> personneDAO = adf.getPersonneDAO();
+        personne ao = personneDAO.find(indice);
+        String[] titles = {"id", "nom", "prenom"};
+        Object[][] to = new Object[1][3];
+        to[0][0] = ao.getID();
+        to[0][1] = ao.getName();
+        to[0][2] = ao.getFirstname();
+        tableStudent.setModel(new DefaultTableModel(to, titles));
+    }
+
+    public void refreshTabEleve() {
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        DAO<personne> personneDAO = adf.getPersonneDAO();
+        ArrayList<personne> ao = personneDAO.findAll();
+        ArrayList<personne> ao2 = new ArrayList<>();
+        for (int i = 0; i < ao.size(); i++) {
+            if (ao.get(i).getType().equals("stud") || ao.get(i).getType().equals("Eleve")) {
+                ao2.add(ao.get(i));
+            }
+        }
+        String[] titles = {"id", "nom", "prenom"};
+        Object[][] to = new Object[ao2.size()][3];
+        for (int i = 0; i < ao2.size(); i++) {
+            System.out.println(ao2.get(i).getType());
+            to[i][0] = ao2.get(i).getID();
+            to[i][1] = ao2.get(i).getName();
+            to[i][2] = ao2.get(i).getFirstname();
+        }
+        tableStudent.setModel(new DefaultTableModel(to, titles));
+    }
+
     public void refreshTabEleve(@NotNull ArrayList<personne> ao) {
         ArrayList<personne> ao2 = new ArrayList<>();
         for (int i = 0; i < ao.size(); i++) {
@@ -67,14 +177,13 @@ public class Fen {
                 ao2.add(ao.get(i));
             }
         }
-        String[] titles = {"nom", "prenom"};
-        Object[][] to = new Object[ao2.size()][2];
+        String[] titles = {"id", "nom", "prenom"};
+        Object[][] to = new Object[ao2.size()][3];
         for (int i = 0; i < ao2.size(); i++) {
             System.out.println(ao2.get(i).getType());
-            to[i][0] = ao2.get(i).getName();
-            to[i][1] = ao2.get(i).getFirstname();
-            System.out.println(to[i][0]);
-            System.out.println(to[i][1]);
+            to[i][0] = ao2.get(i).getID();
+            to[i][1] = ao2.get(i).getName();
+            to[i][2] = ao2.get(i).getFirstname();
         }
         tableStudent.setModel(new DefaultTableModel(to, titles));
     }
@@ -126,9 +235,37 @@ public class Fen {
         panel2.add(scrollPane1, gbc);
         tableClasse = new JTable();
         scrollPane1.setViewportView(tableClasse);
+        voirClasseButton = new JButton();
+        voirClasseButton.setText("Voir Classe");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel2.add(voirClasseButton, gbc);
+        final JPanel spacer1 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel2.add(spacer1, gbc);
+        final JPanel spacer2 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel2.add(spacer2, gbc);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridBagLayout());
         tabbedPane1.addTab("Eleves", panel3);
+        eleveButton = new JButton();
+        eleveButton.setText("Voir Eleve");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel3.add(eleveButton, gbc);
         final JScrollPane scrollPane2 = new JScrollPane();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -139,6 +276,20 @@ public class Fen {
         panel3.add(scrollPane2, gbc);
         tableStudent = new JTable();
         scrollPane2.setViewportView(tableStudent);
+        final JPanel spacer3 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel3.add(spacer3, gbc);
+        final JPanel spacer4 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel3.add(spacer4, gbc);
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridBagLayout());
         tabbedPane1.addTab("Profil", panel4);

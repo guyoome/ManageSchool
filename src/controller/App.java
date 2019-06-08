@@ -33,8 +33,8 @@ public class App {
         
         ///TEST BULLETIN -------------------------------------------------------------------------------------------
         DAO<bulletin> bulletinDAO = adf.getBulletinDAO();
-        bulletin newBu = new bulletin(0,"AB",0,0);
-        bulletinDAO.create(newBu);
+        //bulletin newBu = new bulletin(0,"AB",0,0);
+       // bulletinDAO.create(newBu);
         
         bulletin bubu = bulletinDAO.find(1);
         System.out.println("ID BULLETIN: " + bubu.getID());
@@ -64,8 +64,8 @@ public class App {
             System.out.println("ID trimestre: " + RechercheBulletin.get(i).getIDtrimestre());
         }*/
         
-        bulletin bulletinM = new bulletin(5,"",-1,1);
-        bulletinDAO.update(bulletinM);
+        //bulletin bulletinM = new bulletin(5,"",-1,1);
+        //bulletinDAO.update(bulletinM);
         
         ///TEST ANNEESCOLAIRE -------------------------------------------------------------------------------------------
         
@@ -94,8 +94,8 @@ public class App {
         DAO<classe> classeDAO = adf.getClasseDAO();
         
         //creation
-        classe newClass = new classe(2, "CE1a", 0,0,0);
-        classeDAO.create(newClass);
+        //classe newClass = new classe(2, "CE1a", 0,0,0);
+        //classeDAO.create(newClass);
         
         //find
         classe clacla = classeDAO.find(2);
@@ -214,8 +214,8 @@ public class App {
         DAO<ecole> ecoleDAO = adf.getEcoleDAO();
         
         //creation
-        ecole newecole = new ecole(0,"Lycee Richelieu", "rue Gorges Sand, Rueil Malmaison");
-        ecoleDAO.create(newecole);
+        //ecole newecole = new ecole(0,"Lycee Richelieu", "rue Gorges Sand, Rueil Malmaison");
+        //ecoleDAO.create(newecole);
         
         //find
         ecole eco = ecoleDAO.find(2);
@@ -282,8 +282,8 @@ public class App {
         DAO<evaluation> evaluationDAO = adf.getEvaluationDAO();
               
         //creation
-        evaluation newEv = new evaluation(0,"Attention aux fautes de calculs",13,0);
-        evaluationDAO.create(newEv);
+        //evaluation newEv = new evaluation(0,"Attention aux fautes de calculs",13,0);
+        //evaluationDAO.create(newEv);
         
         //find 
         evaluation ev = evaluationDAO.find(1);
@@ -316,15 +316,15 @@ public class App {
         }
         */
         
-        evaluation NewEva = new evaluation(6,"TB", 5,2);
-        evaluationDAO.update(NewEva);
+       // evaluation NewEva = new evaluation(6,"TB", 5,2);
+        //evaluationDAO.update(NewEva);
         
         ///TEST INSCRIPTION -------------------------------------------------------------------------------------------
         DAO<inscription> inscriptionDAO = adf.getInscriptionDAO();
               
         //creation
-        inscription newIns = new inscription(0,1,3);
-        inscriptionDAO.create(newIns);
+        //inscription newIns = new inscription(0,1,3);
+        //inscriptionDAO.create(newIns);
         
         //find 
         inscription ins = inscriptionDAO.find(1);
@@ -352,16 +352,16 @@ public class App {
             System.out.println("personne: " + RechercheInscription.get(i).getPersonne());
         }*/
         
-        inscription newInscri = new inscription(5,2,2);
-        inscriptionDAO.update(newInscri);
+        //inscription newInscri = new inscription(5,2,2);
+        //inscriptionDAO.update(newInscri);
         
         
         ///TEST NIVEAU -------------------------------------------------------------------------------------------
         DAO<niveau> niveauDAO = adf.getNiveauDAO();
               
         //creation
-        niveau newNiv = new niveau(0,"CE1");
-        niveauDAO.create(newNiv);
+        //niveau newNiv = new niveau(0,"CE1");
+        //niveauDAO.create(newNiv);
         
         //find 
         niveau niv = niveauDAO.find(2);
@@ -393,8 +393,8 @@ public class App {
         DAO<personne> personneDAO = adf.getPersonneDAO();
               
         //creation
-        personne moi = new personne(0,"Helene", "Carlier-Gubler", "Prof", "LogNep", "coucou");
-        personneDAO.create(moi);
+        //personne moi = new personne(0,"Helene", "Carlier-Gubler", "Prof", "LogNep", "coucou");
+        //personneDAO.create(moi);
         
         //find 
         personne toi = personneDAO.find(2);
@@ -433,16 +433,16 @@ public class App {
         }
         */
        
-       personne elle = new personne(2,"Clara", "Sabatey", "Eleve", "Clacla", "love");
-       personneDAO.update(elle);
+       //personne elle = new personne(2,"Clara", "Sabatey", "Eleve", "Clacla", "love");
+       //personneDAO.update(elle);
         
         
         ///TEST TRIMESTRE -------------------------------------------------------------------------------------------
         DAO<trimestre> trimestreDAO = adf.getTrimestreDAO();
               
         //creation
-        trimestre Newtrim = new trimestre(0,3,"01/09/2018","31/06/2019", 0);
-        trimestreDAO.create(Newtrim);
+        //trimestre Newtrim = new trimestre(0,3,"01/09/2018","31/06/2019", 0);
+        //trimestreDAO.create(Newtrim);
         
         //find 
         trimestre trim = trimestreDAO.find(1);
@@ -476,8 +476,8 @@ public class App {
             System.out.println("anneeScolaire: " + RechercheTrim.get(i).getAnneeScolaire());
         }*/
         
-        trimestre newTrime = new trimestre(2,1,"02/09/2017","15/06/2018",2);
-        trimestreDAO.update(newTrime);
+        //trimestre newTrime = new trimestre(2,1,"02/09/2017","15/06/2018",2);
+        //trimestreDAO.update(newTrime);
         
         
          /*       

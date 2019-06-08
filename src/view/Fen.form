@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.Fen">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="500" height="447"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -40,6 +40,27 @@
                   </component>
                 </children>
               </scrollpane>
+              <component id="20cce" class="javax.swing.JButton" binding="voirClasseButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Voir Classe"/>
+                </properties>
+              </component>
+              <hspacer id="a66a3">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.1" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="21a79">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.1" weighty="0.0"/>
+                </constraints>
+              </hspacer>
             </children>
           </grid>
           <grid id="24191" layout-manager="GridBagLayout">
@@ -49,6 +70,15 @@
             <properties/>
             <border type="none"/>
             <children>
+              <component id="f5698" class="javax.swing.JButton" binding="eleveButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Voir Eleve"/>
+                </properties>
+              </component>
               <scrollpane id="db219">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -63,6 +93,18 @@
                   </component>
                 </children>
               </scrollpane>
+              <hspacer id="59e54">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.1" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="3a662">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.1" weighty="0.0"/>
+                </constraints>
+              </hspacer>
             </children>
           </grid>
           <grid id="bd304" layout-manager="GridBagLayout">
