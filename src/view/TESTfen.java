@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * contient la présentation de l'interface graphique
  */
 package view;
 
@@ -16,6 +14,7 @@ import java.util.ArrayList;
 
 
 /**
+ * class qui test la fenetre
  * @author clara
  */
 public class TESTfen extends javax.swing.JDialog {
@@ -35,6 +34,9 @@ public class TESTfen extends javax.swing.JDialog {
         RemplirComboBoxSelectYear();
     }
 
+    /**
+     * start la fenetre
+     */
     public void start() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -74,6 +76,9 @@ public class TESTfen extends javax.swing.JDialog {
         });
     }
 
+    /**
+     * rempli les combo box
+     */
     public void RemplirComboBoxSelectYear() {
         ComboBoxSelectYear.removeAllItems();
 
@@ -86,6 +91,10 @@ public class TESTfen extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * remplie les tableau de classe
+     * @param ao une array list de classe
+     */
     public void RemplirTableauClasses(ArrayList<classe> ao) {
         System.out.println("work");
         String year = (String) ComboBoxSelectYear.getSelectedItem();
@@ -115,6 +124,9 @@ public class TESTfen extends javax.swing.JDialog {
     }*/
 
 
+    /**
+     * contructeur par default
+     */
     TESTfen() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
@@ -508,28 +520,45 @@ public class TESTfen extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * créer un bouton evenementiel
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jPanel5.setVisible(true);
         jPanel4.setVisible(false);
         //prend info de la classe 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * créer un bouton evenementiel
+     * @param evt 
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jPanel5.setVisible(false);
         jPanel4.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * créer un bouton evenementiel pour seletionner l'annee
+     * @param evt 
+     */
     private void ComboBoxSelectYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxSelectYearActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_ComboBoxSelectYearActionPerformed
 
+    /**
+     * créer un bouton evenementiel
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //fonction pour ajouter une note a un eleve
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
+     * main
      * @param args the command line arguments
      */
     public static void main(String args[]) {

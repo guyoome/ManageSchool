@@ -1,3 +1,6 @@
+/*
+ * contient la logique concernant les actions effectuées par l'utilisateur
+ */
 package controller;
 
 
@@ -10,9 +13,19 @@ import model.*;
 import view.Fen;
 import view.TESTfen;
 
+/**
+ * classe principal qui fait le lien entre utilisateur et machine
+ * @author helen, guillaume, clara
+ */
 public class App {
     //private People session = null;//variable de session
 
+    /**
+     * connection en tant que personne 
+     * @param user le pseudo de la personne qui essaye de se connecter
+     * @param mdp son mot de passe
+     * @return true si l'user existe et qu'il a le bon mot de passe, false sinon
+     */
     public static Boolean connection(String user, String mdp) {
         Boolean isAUTH = false;
         if (user.equals("gui")) {//if user&mdp in database fct
@@ -25,6 +38,10 @@ public class App {
         return isAUTH;
     }
 
+    /**
+     * le main du projet
+     * @param args 
+     */
     public static void main(String[] args) {
         // write your code here
         

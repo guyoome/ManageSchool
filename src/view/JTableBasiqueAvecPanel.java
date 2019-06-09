@@ -1,9 +1,19 @@
+/**
+ * contient la présentation de l'interface graphique
+ */
 package view;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * classe qui créer des jTable avec Panel
+ * @author clara, guillaume
+ */
 public class JTableBasiqueAvecPanel extends JFrame{
+    /**
+     * contructeur par default
+     */
     public JTableBasiqueAvecPanel() {
         super();
 
@@ -29,6 +39,10 @@ public class JTableBasiqueAvecPanel extends JFrame{
 
         pack();
     }
+    /**
+     * main
+     * @param args 
+     */
     public static void main(String[] args) {
         new JTableBasiqueAvecPanel().setVisible(true);
     }
