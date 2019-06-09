@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * contient les données à afficher
  */
 package model;
 import java.sql.Connection;
@@ -15,10 +13,6 @@ import java.util.ArrayList;
  * @param <T> object de type T
  * @source https://openclassrooms.com/en/courses/26832-apprenez-a-programmer-en-java/26830-liez-vos-tables-avec-des-objets-java-le-pattern-dao
  */
-
-
-
-
 public abstract class DAO<T> {
   protected Connection connect = null;
    
@@ -47,9 +41,6 @@ public abstract class DAO<T> {
   */
   public abstract boolean update(T obj);
 
-  //public abstract boolean delete(T obj);
-
-//  public abstract boolean update(T obj);
 
     /**
   * Méthode de recherche des informations

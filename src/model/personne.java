@@ -1,3 +1,6 @@
+/**
+ * contient les données à afficher
+ */
 package model;
 
 public class personne {

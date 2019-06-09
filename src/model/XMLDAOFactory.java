@@ -1,13 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * contient les données à afficher
  */
 package model;
 
 /**
- *
+ *@source https://openclassrooms.com/en/courses/26832-apprenez-a-programmer-en-java/26830-liez-vos-tables-avec-des-objets-java-le-pattern-dao
  * @author helen
+ *  classe necessaire pour relier les tables et les classes
  */
 public class XMLDAOFactory extends AbstractDAOFactory {
   

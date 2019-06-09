@@ -1,14 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * contient les données à afficher
  */
 package model;
 
 import java.sql.Connection;
 
 /**
- *
+ * classe des annees scolaire
  * @author helen
  */
 public class anneescolaire {
@@ -17,24 +15,37 @@ public class anneescolaire {
     private int id = 0;
     
     
-    ///constructors
+    /**
+ * constructeur surchargé
+     * @param id l'ID de l'annee scolaire
+ */
     public anneescolaire(int id)
     {
         this.id = id;
     }
     
+    /**
+     * constructeur basique
+     */
     public anneescolaire(){}
 
     anneescolaire(Connection conn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    ///getters and setters
+    /**
+     * setter : change l'id
+     * @param id qui deviendra l'id de la classe
+     */
     public void setID(int id)
     {
         this.id = id;
     }
     
+    /**
+     * getter : retourne l'id de l'objet
+     * @return id l'id de l'objet
+     */
     public int getID()
     {
         return id;
